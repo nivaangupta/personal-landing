@@ -4,15 +4,16 @@ frontend:
     preBuild:
       commands:
         - nvm use 20
+        - cd nivaan-site
         - npm ci
     build:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: .next
+    baseDirectory: nivaan-site/out
     files:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
-      - .next/cache/**/*
+      - nivaan-site/node_modules/**/*
+      - nivaan-site/.next/cache/**/*
