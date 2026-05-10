@@ -1,0 +1,36 @@
+---
+description: Orchestrator-first subagent workflow for multi-step development tasks
+globs: "**/*"
+alwaysApply: agent
+---
+
+- Default to orchestrator + subagents for non-trivial multi-file or multi-app work.
+- Use `Feature Builder` for end-to-end research, planning, implementation, and review.
+- Use `TDD` for strict red-green-refactor cycles.
+
+## Agent Hierarchy
+
+**Coordinators**
+
+- `Feature Builder` — end-to-end orchestration
+- `TDD` — red-green-refactor coordination
+
+**Domain Specialists**
+
+- `Backend Architect` — NestJS modules, adapters, data models, backend design
+- `Frontend Developer` — Next.js UI, accessibility, responsive implementation
+- `API Specialist` — API contracts, docs, and versioning
+- `Admin Portal` — admin dashboards, RBAC, audit logging, operational tooling
+- `Documenter` — AGENTS/README/docs and workflow documentation
+- `Reviewer` — review gate after implementation
+
+**Process Workers**
+
+- `Planner`, `Implementer`, `Researcher`, `Red`, `Green`, `Refactor`
+
+## Dispatch Rules
+
+- Match the task domain to the right specialist before defaulting to `Implementer`.
+- One subagent per independent task.
+- Run `Reviewer` after implementation before marking work complete.
+- Use the full workflow guidance in `.github/instructions/subagent-workflow.instructions.md`.

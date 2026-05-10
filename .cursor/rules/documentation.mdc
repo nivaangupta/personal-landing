@@ -1,0 +1,96 @@
+---
+description: Documentation standards for features and fixes
+globs: "**/*"
+alwaysApply: agent
+---
+
+## Documentation Location
+
+- **Features:** `docs/features/{{ISSUE_ID}}-FEATURE-NAME/`
+- **Fixes:** `docs/fixes/` (monthly logs or complex fix folders)
+- **Architecture:** `docs/architecture/` (ADRs)
+- **API:** `docs/api/`
+- **User-facing docs site:** `apps/docs/content/docs/`
+
+## Per-App Obligations
+
+| App          | Change type                      | Required doc action                                               |
+| ------------ | -------------------------------- | ----------------------------------------------------------------- |
+| `apps/api`   | New or modified controller/route | Update `docs/api/` **and** `apps/docs/content/docs/`              |
+| `apps/api`   | Breaking change                  | Update `docs/api/`, `apps/docs/content/docs/`, and `CHANGELOG.md` |
+| `apps/api`   | New module / service             | Add to `docs/features/` feature spec                              |
+| `apps/admin` | New route handler                | Update relevant feature spec                                      |
+| `apps/admin` | New user-facing page             | Update `docs/features/` and `apps/docs/content/docs/`             |
+| `apps/web`   | New user-facing page             | Update `docs/features/` and `apps/docs/content/docs/`             |
+| `apps/docs`  | Content-only edits (MDX)         | No extra docs — this edit _is_ the documentation update           |
+| `packages/*` | New or changed public API        | Update `docs/api/` and `apps/docs/content/docs/`                  |
+
+## Feature Documentation
+
+Create for new features, API endpoints, architectural changes:
+
+```
+docs/features/NAPX-123-feature-name/
+├── spec.md    # Functional specification
+├── plan.md    # Implementation plan
+└── [optional] # Diagrams, examples
+```
+
+## Fix Documentation
+
+**Simple fixes:** Add to monthly log `docs/fixes/YYYY-MM.md`
+
+**Complex fixes:** Create folder `docs/fixes/NAPX-123-FIX-NAME/`
+
+## Pre-Commit Documentation Gate
+
+⚠️ Documentation MUST be written or updated BEFORE committing. This is mandatory.
+
+**All changes:**
+
+- [ ] Feature spec (`docs/features/`) exists and reflects current implementation
+- [ ] Fix entry added to `docs/fixes/YYYY-MM.md` or complex fix folder created
+- [ ] `CHANGELOG.md` updated for breaking changes
+- [ ] ADR created in `docs/architecture/` for significant decisions
+
+**`apps/api` changes:**
+
+- [ ] `docs/api/` updated with endpoint spec (method, path, auth, request/response, errors)
+- [ ] `apps/docs/content/docs/` page created or updated
+- [ ] Breaking changes noted in `docs/api/`, `apps/docs/content/docs/`, and `CHANGELOG.md`
+
+**`apps/admin` or `apps/web` changes:**
+
+- [ ] User-facing features have a page in `apps/docs/content/docs/`
+- [ ] Cross-app or public API routes documented in `docs/api/`
+
+**`packages/*` changes:**
+
+- [ ] Public exports documented in `docs/api/` or feature spec
+- [ ] `apps/docs/content/docs/` updated if developer-facing
+
+**`apps/docs` changes:**
+
+- [ ] No extra docs required — the MDX edit itself is the documentation update
+
+If any applicable item is missing, **write the documentation first, then commit**.
+
+## Commit References
+
+Reference documentation in commits:
+
+```
+feat(feature): implement X
+
+See docs/features/NAPX-123-feature-name/ for details
+Closes NAPX-123
+```
+
+## Templates
+
+Use templates from `templates/` directory:
+
+- `feature-spec.template.md`
+- `feature-plan.template.md`
+- `monthly-fix-log.template.md`
+- `adr.template.md`

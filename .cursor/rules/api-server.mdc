@@ -1,0 +1,94 @@
+---
+description: API development and server-side implementation guidelines
+globs: "**/*"
+alwaysApply: agent
+---
+
+## Adapter Pattern (MANDATORY)
+
+- **ALL external integrations MUST use the Adapter Pattern.** No exceptions.
+- Never inject Prisma, Stripe, AWS SDKs, or any external client directly into services.
+- Always inject via adapter token: `@Inject(DATABASE_ADAPTER)`, `@Inject(PAYMENT_ADAPTER)`, etc.
+- Required adapters: `DATABASE_ADAPTER`, `AUTH_ADAPTER`, `PAYMENT_ADAPTER`, `SMART_LOCK_ADAPTER`, `STORAGE_ADAPTER`, `NOTIFICATION_ADAPTER`, `CACHE_ADAPTER`, `QUEUE_ADAPTER`
+- See `AGENTS.md` > "Adapter Pattern (MANDATORY)" for full documentation.
+
+## NestJS Controller Pattern
+
+- Follow NestJS controller pattern: `@Controller('resource')` with RESTful routes. Use `@UseGuards(AuthGuard, TenantGuard)` on all controllers.
+- Validate all input data before processing.
+- Return consistent response formats.
+- Use proper HTTP status codes.
+- Document API endpoints in `docs/api/`.
+
+## Admin App Route Handler Pattern (`apps/admin`)
+
+Next.js route handlers in `apps/admin/app/api/` follow a thin-handler pattern — same separation of concerns as NestJS controllers/services, but without the DI framework:
+
+```ts
+// app/api/<domain>/route.ts — CORRECT
+export async function GET(req: NextRequest) {
+	// 1. Authenticate
+	const session = await getAdminSession(req);
+	if (!session)
+		return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+	// 2. Delegate to service
+	try {
+		return NextResponse.json(await domainService.findAll());
+	} catch (err) {
+		return handleError(err);
+	}
+}
+```
+
+- Services are imported from `@/lib/container` (module-level singletons)
+- All business logic (validation, permission checks, DB queries) lives in `lib/services/`
+- Domain errors (`NotFoundError`, `ConflictError`, `ForbiddenError`) are thrown in services, mapped to HTTP in `handleError()`
+- Route handlers must never import `prisma` or any `DatabaseAdapter` implementation directly
+
+## Audit Logging (MANDATORY for write operations)
+
+Every service method that creates, updates, or deletes a record **must** emit an audit log entry. Audit logic lives in the service — never in route handlers.
+
+**Pattern:**
+
+- Service constructor receives `audit: AdminActivityLogService` (injected via `container.ts`)
+- Every write method accepts `ctx: AuditContext` as its **last** parameter
+- After a successful mutation, call `void this.audit.log({ adminId: ctx.adminId, action: AuditAction.X, ... })`
+- `AuditContext` is built once in the route handler via `buildAuditContext(req, session)` from `lib/admin-auth.ts`
+- Always use `AuditAction` and `AuditEntityType` enums — never raw strings
+- Permission checks that use `ctx.isSuperAdmin` must live **in the service** (throw `ForbiddenError`) — never duplicated in the route handler
+
+```ts
+// ✅ Correct service write method
+async create(dto: CreateDto, ctx: AuditContext): Promise<Row> {
+  if (!ctx.isSuperAdmin) throw new ForbiddenError('Super admin required')
+  const record = await this.db.create(...)
+  void this.audit.log({
+    adminId: ctx.adminId,
+    action: AuditAction.TENANT_CREATE,
+    targetEntityType: AuditEntityType.TENANT,
+    targetEntityId: record.id,
+    ipAddress: ctx.ipAddress,
+  })
+  return record
+}
+
+// ✅ Correct route handler
+export const POST = withAdminAuth(async (req, _ctx, session) => {
+  const auditCtx = buildAuditContext(req, session)
+  try {
+    return NextResponse.json(await domainService.create(dto, auditCtx), { status: 201 })
+  } catch (err) {
+    return handleError(err)
+  }
+})
+```
+
+**Anti-patterns:**
+
+- `adminActivityLogService.log({...}).catch(...)` in a route handler — NO
+- `action: 'tenant.create'` raw string — use `AuditAction.TENANT_CREATE`
+- Write method without `ctx: AuditContext` param — NO
+- `if (!session.isSuperAdmin) return 403` in route — check in service, throw `ForbiddenError`
+
+See `lib/services/audit.ts` for `AuditAction`, `AuditEntityType`, and `AuditContext`. See `lib/admin-auth.ts` for `buildAuditContext()`.
