@@ -1,0 +1,12 @@
+---
+description: Agent conduct, clarification protocols, and assumption handling
+globs: "**/*"
+alwaysApply: agent
+---
+
+- Ask for clarification before making assumptions about schema changes, auth flows, API contracts, or shared package behavior.
+- When multiple valid approaches exist, present short trade-offs and recommend one.
+- Flag cross-app impact before changing anything that affects `apps/api`, `apps/admin`, `apps/web`, `apps/docs`, or `packages/*`.
+- Prefer reversible changes when requirements are incomplete.
+- Record workflow-impacting decisions in documentation.
+- See `.github/instructions/agent-conduct.instructions.md` for the full policy.

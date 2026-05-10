@@ -1,0 +1,49 @@
+---
+description: Deprecated patterns and anti-practices to avoid
+globs: "**/*"
+alwaysApply: agent
+---
+
+- No deprecated NestJS + Next.js features.
+- No global CSS outside Tailwind CSS 4, ShadCN UI configuration.
+- No direct DOM manipulation; use framework reactivity.
+- No custom solutions for problems solved by core libraries.
+- No inconsistent naming for events or handlers.
+- No mixing server and client code inappropriately.
+
+## Adapter Pattern Violations (CRITICAL)
+
+**NEVER do any of the following:**
+
+- `constructor(private prisma: PrismaService)` — Use `@Inject(DATABASE_ADAPTER)` (NestJS) or `DatabaseAdapter` constructor injection (admin app)
+- `import { prisma } from '@repo/database'` in a service or route handler — Use `DatabaseAdapter` only
+- `new Stripe(key)` — Use `@Inject(PAYMENT_ADAPTER)`
+- `new SeamClient()` — Use `@Inject(SMART_LOCK_ADAPTER)`
+- `new S3Client()` — Use `@Inject(STORAGE_ADAPTER)`
+- `new SESClient()` / `new SNSClient()` — Use `@Inject(NOTIFICATION_ADAPTER)`
+- `new Redis()` — Use `@Inject(CACHE_ADAPTER)`
+- `new Queue()` — Use `@Inject(QUEUE_ADAPTER)`
+
+All external dependencies must be injected via adapter interfaces. See [AGENTS.md](../../AGENTS.md) for complete adapter documentation.
+
+## Admin App Anti-Patterns (CRITICAL)
+
+**NEVER do any of the following in `apps/admin`:**
+
+- Import `prisma` directly in a route handler: `import { prisma } from '@repo/database'` — use `tenantsService` / `systemUsersService` from `@/lib/container`
+- Put business logic (duplicate checks, permissions, soft-delete) in route handlers — put it in `lib/services/`
+- Construct `NextResponse` inside a service — services throw typed errors; route handlers call `handleError(err)`
+- Call `apps/api` (`fetch` to `:7000`) from the admin app — the admin app is self-contained and queries via adapter
+- Add a new domain by copying raw `prisma.*` calls — always create a service in `lib/services/` and register it in `lib/container.ts`
+
+## Audit Logging Anti-Patterns (CRITICAL)
+
+**NEVER do any of the following:**
+
+- Call `adminActivityLogService.log({...}).catch(...)` in a route handler — audit belongs in the service layer
+- Pass a raw string for `action` or `targetEntityType`: `action: 'tenant.create'` — use `AuditAction.TENANT_CREATE`
+- Write a service method that mutates data **without** a `ctx: AuditContext` parameter
+- Call `void this.audit.log(...)` **before** the mutation succeeds — log after the write
+- Add `if (!session.isSuperAdmin) return 403` to a route handler — throw `ForbiddenError` in the service instead
+- Forget to inject `adminActivityLogService` into a new write-capable service in `lib/container.ts`
+- Declare `adminActivityLogService` after the services that depend on it in `container.ts` — it must come **first**

@@ -1,0 +1,20 @@
+---
+description: UI accessibility principles
+globs: apps/admin/**,apps/web/**,packages/ui/**
+alwaysApply: agent
+---
+
+## Accessibility (WCAG 2.1 AA)
+
+- Use semantic HTML elements (`<nav>`, `<main>`, `<section>`, `<aside>`, `<header>`).
+- Every interactive element must be keyboard-navigable and have a visible focus ring.
+- All images need descriptive `alt` text; decorative images use `alt=""`.
+- Use `aria-label` on icon-only buttons: `<Button aria-label="Delete tenant">`.
+- Ensure colour contrast ratio ≥ 4.5:1 for normal text, ≥ 3:1 for large text.
+- Use loading skeletons / `aria-busy` during async operations — never leave the user with a blank screen.
+- Form inputs must have associated `<label>` elements (via `htmlFor` or wrapping).
+- Error messages must reference their field via `aria-describedby`.
+
+## Responsive design
+
+See `ui-responsive.mdc` for mobile-first layout rules, table patterns, and the sidebar drawer pattern.

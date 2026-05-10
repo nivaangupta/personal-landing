@@ -1,0 +1,181 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "API: Debug (attach)",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "restart": true,
+            "cwd": "${workspaceFolder}",
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceFolder}/apps/api/dist/**/*.js"
+            ],
+            "presentation": {
+                "group": "api",
+                "order": 1
+            }
+        },
+        {
+            "name": "API: Debug (launch)",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "run",
+                "dev:api"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "NODE_OPTIONS": "--inspect"
+            },
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceFolder}/apps/api/dist/**/*.js"
+            ],
+            "console": "integratedTerminal",
+            "presentation": {
+                "group": "api",
+                "order": 2
+            }
+        },
+        {
+            "name": "API: Jest (current file)",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "--filter=api",
+                "exec",
+                "jest",
+                "--testPathPattern",
+                "${relativeFile}",
+                "--no-coverage"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceFolder}/apps/api/dist/**/*.js"
+            ],
+            "presentation": {
+                "group": "api",
+                "order": 3
+            }
+        },
+        {
+            "name": "API: Jest (all tests)",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "run",
+                "test"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceFolder}/apps/api/dist/**/*.js"
+            ],
+            "presentation": {
+                "group": "api",
+                "order": 4
+            }
+        },
+        {
+            "name": "Web: Debug (Next.js)",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "run",
+                "dev:web"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "NODE_OPTIONS": "--inspect=9229"
+            },
+            "console": "integratedTerminal",
+            "presentation": {
+                "group": "web",
+                "order": 1
+            }
+        },
+        {
+            "name": "Admin: Debug (Next.js)",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "run",
+                "dev:admin"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "NODE_OPTIONS": "--inspect=9230"
+            },
+            "console": "integratedTerminal",
+            "presentation": {
+                "group": "admin",
+                "order": 1
+            }
+        },
+        {
+            "name": "Docs: Debug (Next.js)",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "run",
+                "dev:docs"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "NODE_OPTIONS": "--inspect=9231"
+            },
+            "console": "integratedTerminal",
+            "presentation": {
+                "group": "docs",
+                "order": 1
+            }
+        },
+        {
+            "name": "Node: Attach to process",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "presentation": {
+                "group": "misc",
+                "order": 1
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Full Stack (API + Web)",
+            "configurations": [
+                "API: Debug (launch)",
+                "Web: Debug (Next.js)"
+            ],
+            "presentation": {
+                "group": "compound",
+                "order": 1
+            }
+        },
+        {
+            "name": "All Apps",
+            "configurations": [
+                "API: Debug (launch)",
+                "Web: Debug (Next.js)",
+                "Admin: Debug (Next.js)",
+                "Docs: Debug (Next.js)"
+            ],
+            "presentation": {
+                "group": "compound",
+                "order": 2
+            }
+        }
+    ]
+}

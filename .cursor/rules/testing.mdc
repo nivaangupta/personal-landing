@@ -1,0 +1,20 @@
+---
+description: Testing standards and patterns for napx-pms
+globs: "**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx,**/jest.config.*"
+alwaysApply: agent
+---
+
+- Use **Jest** with `ts-jest` for all unit tests. Do NOT use Vitest.
+- Test files live alongside implementation: `foo.service.test.ts` next to `foo.service.ts`.
+- Admin app services use constructor injection — test by constructing with a `jest.Mocked<DatabaseAdapter>` built from `jest.fn()` for every method.
+- Always mock `AdminActivityLogService` as `{ log: jest.fn().mockResolvedValue(undefined) }`.
+- Use `mockResolvedValue` / `mockRejectedValue` for all async mocks — never `mockReturnValue`.
+- Each `describe` block uses a `beforeEach` factory that reconstructs mocks and the service under test — never share state between tests.
+- Every service write method (`create`, `update`, `remove`) must have a test that asserts `audit.log` was called with `expect.objectContaining({...})`. Use `objectContaining` because `log()` may include server-generated fields (e.g. timestamp, entity ID) that cannot be predicted in test assertions.
+- Test `NotFoundError`, `ConflictError`, and `ForbiddenError` throwing on all edge-case paths.
+- Never import `PrismaClient` or `prisma` directly in test files — mock `DatabaseAdapter` interface only.
+- Use `AuditContext` mock: `{ adminId: "admin-uuid", isSuperAdmin: true, ipAddress: "127.0.0.1" }`.
+- Route handler tests: assert 401 on unauthenticated request, correct status on success, and `handleError()` mapping (NotFoundError→404, ConflictError→409, ForbiddenError→403).
+- `pnpm run test` (currently API-only via `turbo run test --filter=api`), `pnpm run check-types`, and `pnpm run lint` must all pass before committing. Once an admin-scoped test command is available (see NAPX-519), ensure it also passes for admin changes.
+- Service coverage target: ≥ 90% lines, ≥ 80% branches.
+- Follow TDD: write the failing test first, run it to confirm it fails, then implement the minimal code to pass.

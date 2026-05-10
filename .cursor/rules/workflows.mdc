@@ -1,0 +1,39 @@
+---
+description: Developer workflows and environment settings
+globs:
+alwaysApply: agent
+---
+
+## Development Commands
+
+- **Dev server:** `pnpm run dev` (web:3000, admin:4000, api:5000, docs:3001)
+- **Build:** `pnpm run build`
+- **Type check:** `pnpm run type-check`
+- **Filter app:** `pnpm run dev --filter=api`
+
+## Testing
+
+- **Unit tests:** `pnpm run test`
+- **Coverage:** `pnpm run test:cov`
+- **E2E tests:** `pnpm run test:e2e`
+
+## Code Quality
+
+- **Lint:** `pnpm run lint`
+- **Format:** `pnpm run format`
+
+## Required Environment Variables
+
+| Variable | Purpose |
+|----------|---------|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `BETTER_AUTH_SECRET` | BetterAuth signing secret |
+| `BETTER_AUTH_URL` | BetterAuth base URL |
+| `API_URL` | NestJS API URL |
+| `NEXT_PUBLIC_API_URL` | Public API URL for browser |
+
+## Package Manager
+
+- Use `pnpm` exclusively (not npm or yarn)
+- Install: `pnpm install`
+- Add dep: `pnpm add <pkg> --filter=<app>`

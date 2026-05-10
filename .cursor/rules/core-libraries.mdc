@@ -1,0 +1,10 @@
+---
+description: Core libraries and frameworks used in napx-pms
+globs:
+alwaysApply: agent
+---
+
+- Use `@nestjs/common` (API) and Next.js built-in utilities (frontend) for common utilities.
+- Use React hooks (useState, useContext) for client state and Next.js server components for server state for state management.
+- Use Tailwind CSS 4, ShadCN UI for styling; prefer utility classes over custom CSS.
+- Use ShadCN UI for UI components; check existing components before creating new ones.

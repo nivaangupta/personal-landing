@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+set -e
+
+if git diff --cached --name-only --diff-filter=ACM | grep -q '^apps/api/src/'; then
+	echo '[pre-commit] API source changes detected — refreshing OpenAPI spec'
+
+	OPENAPI_URL="${OPENAPI_SOURCE_URL:-}"
+	if [ -z "$OPENAPI_URL" ]; then
+		if curl -sf http://localhost:7000/api/docs-json >/dev/null; then
+			OPENAPI_URL='http://localhost:7000'
+		elif curl -sf http://localhost:5000/api/docs-json >/dev/null; then
+			OPENAPI_URL='http://localhost:5000'
+		fi
+	fi
+
+	if [ -z "$OPENAPI_URL" ]; then
+		echo '[pre-commit] Unable to reach /api/docs-json on localhost:7000 or :5000'
+		echo '[pre-commit] Start the API or set OPENAPI_SOURCE_URL before committing'
+		exit 1
+	fi
+
+	OPENAPI_SOURCE_URL="$OPENAPI_URL" pnpm run generate:openapi
+	git add apps/docs/public/openapi.json
+fi
+
+pnpm exec lint-staged

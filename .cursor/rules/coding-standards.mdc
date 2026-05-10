@@ -1,0 +1,45 @@
+---
+description: TypeScript and NestJS + Next.js development standards
+globs: "**/*"
+alwaysApply: agent
+---
+
+## TypeScript Standards
+
+- All code must be TypeScript. Use strict mode (`strict: true` in tsconfig). Avoid `any` — use `unknown` with type guards instead.
+- Use React functional components with the Composition pattern. Follow ShadCN UI conventions in `packages/ui/`.
+- Follow NestJS + Next.js's recommended folder and naming conventions.
+- Keep functions focused and manageable (under 50-75 lines).
+- Use try-catch for async operations; leverage NestJS + Next.js error utilities.
+
+## Adapter Pattern (CRITICAL)
+
+- **NEVER** use direct SDK/client access in services. Examples of what NOT to do:
+  - `constructor(private prisma: PrismaService)` — NO!
+  - `private stripe = new Stripe(key)` — NO!
+  - `private ses = new SESClient({})` — NO!
+- **ALWAYS** inject via adapter: `@Inject(DATABASE_ADAPTER) private db: DatabaseAdapter`
+- This ensures loose coupling and testability. See `AGENTS.md` for adapter pattern documentation.
+
+## Admin App (`apps/admin`) — Next.js Adapter Pattern
+
+The admin app uses the same adapter/service pattern as `apps/api`, adapted for Next.js (no NestJS DI).
+
+- **Services** live in `apps/admin/lib/services/`. They accept `DatabaseAdapter` via constructor and throw typed errors (`NotFoundError`, `ConflictError`, `ForbiddenError`).
+- **Adapter** interface: `apps/admin/lib/adapters/database.adapter.ts`. Implementation: `prisma.adapter.ts`.
+- **Container** `apps/admin/lib/container.ts` wires the adapter to services and exports module-level singletons.
+- **Route handlers** in `apps/admin/app/api/` are thin: auth → input validation → service call → `handleError()`.
+- **NEVER** import `prisma` directly in a route handler or service — use `DatabaseAdapter` only.
+- **NEVER** put business logic (duplicate checks, soft-delete, permission checks) in route handlers — put it in the service.
+
+## Audit Logging in Admin App (MANDATORY)
+
+Every service method that writes data **must** log an audit entry:
+
+- Service constructor injects `AdminActivityLogService`: `constructor(private readonly db: DatabaseAdapter, private readonly audit: AdminActivityLogService)`
+- Write methods accept `ctx: AuditContext` as last param: `async create(dto: CreateDto, ctx: AuditContext)`
+- After a successful write: `void this.audit.log({ adminId: ctx.adminId, action: AuditAction.X, ... })`
+- `container.ts`: `adminActivityLogService` declared **first**, passed to every write-capable service constructor
+- Route handler: `const auditCtx = buildAuditContext(req, session)` (from `lib/admin-auth.ts`), then `await domainService.create(dto, auditCtx)`
+- Use `AuditAction`/`AuditEntityType` enums (from `lib/services/audit.ts`) — never raw strings
+- Permission guards (`isSuperAdmin`) go in the **service** (throw `ForbiddenError`) — never in the route handler

@@ -14,14 +14,15 @@ export default function Home() {
           NapX
         </a>{" "}
         automates hospitality.{" "}
-        <a
+        {/* <a
           href="https://getintx.com"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-900 underline underline-offset-4 hover:text-gray-500 transition-colors"
-        >
-          IntX
-        </a>{" "}
+        > */}
+          <u>IntX</u>{" "}(Stealth Mode)
+        {/* </a> */}
+        {" "}
         makes sure conventional owners want to use it.
       </p>
       <div className="flex gap-4 pt-2">

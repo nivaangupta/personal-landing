@@ -1,0 +1,136 @@
+---
+description: Production deployment guidance for AWS Amplify and Amazon RDS
+globs: "**/*"
+alwaysApply: agent
+---
+
+## RDS — Secrets Manager Managed Password
+
+- RDS uses `ManageMasterUserPassword` — AWS Secrets Manager owns the master password.
+- **Rotation is DISABLED** — do not re-enable it without implementing runtime secret fetching first.
+  Rotation invalidated the `DATABASE_URL` in Amplify env vars (broke auth on 2026-03-20).
+
+### Check / disable rotation
+
+```bash
+aws secretsmanager describe-secret --secret-id "<SECRET_ARN>" --region us-east-2 --profile napx \
+  --query '{RotationEnabled: RotationEnabled}'
+
+# If accidentally re-enabled:
+aws secretsmanager cancel-rotate-secret --secret-id "<SECRET_ARN>" --region us-east-2 --profile napx
+```
+
+### Get current password
+
+```bash
+aws secretsmanager get-secret-value --secret-id "<SECRET_ARN>" \
+  --region us-east-2 --profile napx \
+  --query 'SecretString' --output text | \
+  node -e "const s=require('fs').readFileSync('/dev/stdin','utf8'); const p=JSON.parse(s).password; console.log(encodeURIComponent(p));"
+```
+
+### After a password change — update Amplify immediately
+
+```bash
+# Always fetch ALL current env vars first, patch DATABASE_URL, then write-back the full set.
+aws amplify update-app --app-id <APP_ID> --region us-east-2 --profile napx \
+  --environment-variables "...ALL_VARS...,DATABASE_URL=postgresql://postgres:<URL_ENCODED_PASS>@<ENDPOINT>:5432/napx_pms?schema=public&sslmode=no-verify"
+
+# Trigger redeploy
+aws amplify start-job --app-id <APP_ID> --branch-name <BRANCH> --job-type RELEASE \
+  --region us-east-2 --profile napx
+```
+
+> **Always URL-encode the password** (`encodeURIComponent()` in Node.js). Characters like `>`, `:`,
+> `?`, `[`, `]`, `$`, `#` will silently break the connection string if not encoded.
+
+### TODO: runtime secret fetching (proper long-term fix)
+
+1. Add `secretsmanager:GetSecretValue` to the Lambda execution role (scoped to the secret ARN).
+2. Fetch the secret at Lambda cold-start and construct `DATABASE_URL` at runtime.
+3. Remove `DATABASE_URL` from Amplify env vars.
+4. Re-enable rotation.
+
+---
+
+## RDS — SSL / sslmode
+
+Always use `sslmode=no-verify` — RDS requires SSL (`disable` is rejected by `pg_hba.conf`).
+Do **not** use `sslmode=require` without ensuring ICMP type 3/code 4 is allowed in all NACLs
+(PMTUD failures cause SSL handshake timeouts when TLS cert packets exceed the path MTU).
+
+---
+
+## RDS — VPC / Network Architecture
+
+### Current state (staging)
+
+- RDS and Lambda functions share the **same 3 subnets**.
+- All subnets use the **default NACL** — do not add a restrictive NACL to these subnets.
+- Security is enforced at the Security Group level only (port 5432 from Lambda SG + dev IPs).
+
+### Why a custom NACL was removed
+
+A custom NACL (`acl-08139c5a1600f12a5`, `napx-staging-rds-nacl`) was applied then removed because:
+
+- Lambda is in the **same subnets** — NACL restrictions broke Lambda outbound traffic.
+- NACL blocked ICMP → PMTUD failure → SSL timeouts.
+- The NACL still exists but is **unassociated**. Do not re-associate without subnet separation.
+
+### Dedicated DB-only subnets — infrastructure ready, RDS migration pending
+
+All AWS resources for true network-layer isolation have been provisioned. Only the final RDS
+migration step remains.
+
+**Completed (2026-03-20):**
+
+- ✅ 3 DB-only subnets created: `subnet-0b5c3a2a67fd2639c` (2a), `subnet-0cc2b212de094f593` (2b), `subnet-0b06455c041134cce` (2c)
+- ✅ DB subnet group `napx-staging-db-subnet-group` created pointing to those subnets
+- ✅ NACL `acl-08139c5a1600f12a5` updated with ICMP type 3/code 4 rules (PMTUD) — rule #90 inbound + outbound
+
+**Pending:**
+
+- ⏳ Associate NACL with DB-only subnets (after RDS migrates)
+- ⏳ Snapshot → restore RDS into new subnet group
+
+**⚠️ AWS Limitation:** `modify-db-instance` cannot change the DB subnet group of an existing
+instance within the same VPC — not while running (`InvalidVPCNetworkStateFault`) nor while stopped
+(`InvalidDBInstanceState`). The only path is **snapshot → restore**, which creates a new instance
+with a **new endpoint**.
+
+**Migration steps (when ready):**
+
+1. `rds create-db-snapshot --db-instance-identifier database-staging --db-snapshot-identifier database-staging-pre-subnet-migration`
+2. Wait for snapshot status `available`
+3. `rds restore-db-instance-from-db-snapshot --db-instance-identifier database-staging-v2 --db-snapshot-identifier database-staging-pre-subnet-migration --db-subnet-group-name napx-staging-db-subnet-group --no-multi-az`
+4. Associate NACL `acl-08139c5a1600f12a5` with all 3 DB-only subnets
+5. Update `DATABASE_URL` in Amplify env vars + trigger redeploy
+6. Verify connectivity, then delete old `database-staging` instance
+
+See `production.amazon.instructions.md` for full commands.
+
+---
+
+## Amplify — Key Rules
+
+- **Never** update env vars without reading the current full set first — partial writes wipe existing vars.
+- **Never** hardcode `--profile napx` in CI/CD scripts — the pipeline IAM role handles auth automatically.
+- Trigger a manual redeploy after any env var change so the Lambda cold-starts with the new values.
+
+---
+
+## Staging Infrastructure Reference
+
+| Resource            | Value                                                                                                     |
+| ------------------- | --------------------------------------------------------------------------------------------------------- |
+| RDS endpoint        | `database-staging.cjcokawi8rxh.us-east-2.rds.amazonaws.com`                                               |
+| VPC                 | `vpc-04be7ec56fe2e88e6` (`172.31.0.0/16`)                                                                 |
+| Shared subnets      | `subnet-0a16c7981dc0da84a`, `subnet-0c95db27a2630e917`, `subnet-074d9492bb3f2ad49`                        |
+| DB-only subnets     | `subnet-0b5c3a2a67fd2639c` (2a), `subnet-0cc2b212de094f593` (2b), `subnet-0b06455c041134cce` (2c)         |
+| DB subnet group     | `napx-staging-db-subnet-group`                                                                            |
+| Default NACL        | `acl-09adf85c942f825f4` — all subnets, do not change                                                      |
+| Custom RDS NACL     | `acl-08139c5a1600f12a5` (`napx-staging-rds-nacl`) — **unassociated** (ICMP + TCP 5432 rules complete)     |
+| Secrets Manager ARN | `arn:aws:secretsmanager:us-east-2:905418361333:secret:rds!db-68adc920-efa8-463f-b724-8e93f8c479c3-BdJmCo` |
+| Amplify app ID      | `d1q0kytmnj1vxx` (`napx-pms-admin`)                                                                       |
+| AWS region          | `us-east-2`                                                                                               |
+| AWS profile (local) | `napx`                                                                                                    |
