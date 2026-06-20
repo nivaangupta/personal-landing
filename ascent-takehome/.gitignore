@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.local
+
+# Prisma generated client (regenerated via prisma generate)
+node_modules/.prisma/
+
+# Misc
+.DS_Store
