@@ -260,6 +260,20 @@ a:hover {
   border-color: var(--hb, #fff);
 }
 
+.footer-social {
+  font-family: var(--font-press);
+  font-size: 8px;
+  color: var(--muted-2);
+  border: 2px solid var(--border);
+  background: var(--panel-2);
+  padding: 8px 11px;
+}
+.footer-social:hover {
+  color: #07070f;
+  background: var(--hb, #fff);
+  border-color: var(--hb, #fff);
+}
+
 /* -------------------------------- pixel avatar -------------------------------- */
 .pixel {
   position: relative;

@@ -1,17 +1,7 @@
 import PageShell from "@/components/arcade/PageShell";
 import SiteHeader from "@/components/arcade/SiteHeader";
 import SiteFooter from "@/components/arcade/SiteFooter";
-
-const SOCIALS = [
-  { label: "X", href: "https://x.com/nivusd", hb: "#ffffff" },
-  { label: "GITHUB", href: "https://github.com/nivaangupta", hb: "#ffffff" },
-  {
-    label: "LINKEDIN",
-    href: "https://www.linkedin.com/in/nivaangupta/",
-    hb: "#4de3d4",
-  },
-  { label: "NAPX", href: "https://napx.com", hb: "#ffcc33" },
-];
+import { SOCIALS } from "@/components/arcade/socials";
 
 export default function LetsTalk() {
   return (

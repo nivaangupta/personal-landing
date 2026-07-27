@@ -6,6 +6,7 @@ import PageShell from "@/components/arcade/PageShell";
 import SiteHeader from "@/components/arcade/SiteHeader";
 import PixelAvatar from "@/components/arcade/PixelAvatar";
 import PixelSprite, { type Px } from "@/components/arcade/PixelSprite";
+import { SOCIALS } from "@/components/arcade/socials";
 
 const BULBA: Px[] = [
   [18.75, 0, 18.75, 12.5, "#6bff8f"],
@@ -1045,6 +1046,27 @@ export default function Home() {
             <span className={mono} style={{ fontSize: 8, color: "#43497a" }}>
               © 2026 NIVAAN GUPTA
             </span>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 8,
+                justifyContent: "center",
+              }}
+            >
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="footer-social"
+                  style={{ ["--hb" as string]: s.hb }}
+                >
+                  {s.label}
+                </a>
+              ))}
+            </div>
             <span className={mono} style={{ fontSize: 8, color: "#43497a" }}>
               INSERT COIN
               <span style={{ animation: "caret 1s steps(1) infinite", color: "#ffcc33" }}>
