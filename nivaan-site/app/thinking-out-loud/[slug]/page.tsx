@@ -1,9 +1,17 @@
 import Link from "next/link";
 import { getPost, getAllPosts } from "@/lib/markdown";
 import { notFound } from "next/navigation";
+import PageShell from "@/components/arcade/PageShell";
+import SiteHeader from "@/components/arcade/SiteHeader";
+import SiteFooter from "@/components/arcade/SiteFooter";
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
+}
+
+function pill(accent: string) {
+  if (accent === "#ff5f9e") return { border: "#5c2440", bg: "#250f1b" };
+  return { border: "#235a56", bg: "#0f2523" };
 }
 
 export default async function PostPage({
@@ -20,25 +28,136 @@ export default async function PostPage({
     notFound();
   }
 
-  return (
-    <article className="space-y-8">
-      <div className="space-y-2">
-        <Link
-          href="/thinking-out-loud"
-          className="text-xs text-gray-400 hover:text-gray-700 transition-colors"
-        >
-          ← Thinking Out Loud
-        </Link>
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900 pt-2">
-          {post.title}
-        </h1>
-        <p className="text-xs text-gray-400">{post.date}</p>
-      </div>
+  const all = getAllPosts();
+  const idx = all.findIndex((p) => p.slug === slug);
+  const prev = idx > 0 ? all[idx - 1] : null;
+  const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
 
-      <div
-        className="prose-content"
-        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-      />
-    </article>
+  const accent = post.accent ?? "#4de3d4";
+  const p = pill(accent);
+
+  return (
+    <PageShell maxWidth={900}>
+      <SiteHeader variant="post" />
+
+      <article
+        style={{
+          marginTop: 26,
+          border: "4px solid #2a2a52",
+          background: "#0b0b1c",
+          boxShadow: "6px 6px 0 #16163a",
+          padding: "32px 30px 34px 30px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 12,
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <span
+            className="mono"
+            style={{
+              fontSize: 8,
+              color: accent,
+              border: `2px solid ${p.border}`,
+              background: p.bg,
+              padding: "7px 10px",
+            }}
+          >
+            {post.category}
+          </span>
+          <span style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 2 }}>
+            {post.date.toUpperCase()}
+          </span>
+        </div>
+
+        <h1
+          className="mono"
+          style={{
+            fontSize: 22,
+            lineHeight: 1.65,
+            margin: "20px 0 26px 0",
+            color: "#fff",
+            textShadow: `3px 3px 0 ${accent}`,
+          }}
+        >
+          {post.title.toUpperCase()}
+        </h1>
+
+        <div
+          className="prose-content"
+          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+        />
+
+        <div style={{ marginTop: 24 }}>
+          <Link href="/lets-talk" className="btn btn-gold">
+            LET&apos;S TALK ▸
+          </Link>
+        </div>
+      </article>
+
+      {(prev || next) && (
+        <section style={{ marginTop: 22 }}>
+          {next && (
+            <Link
+              href={`/thinking-out-loud/${next.slug}`}
+              className="card-link"
+              style={{
+                background: "#0d0d1e",
+                padding: "22px 24px",
+                ["--acc" as string]: next.accent ?? "#ff5f9e",
+              }}
+            >
+              <div className="mono" style={{ fontSize: 8, color: "#6f76ad" }}>
+                NEXT ▸
+              </div>
+              <div
+                className="mono"
+                style={{
+                  fontSize: 13,
+                  color: "#fff",
+                  lineHeight: 1.7,
+                  marginTop: 12,
+                }}
+              >
+                {next.title.toUpperCase()}
+              </div>
+            </Link>
+          )}
+          {prev && (
+            <Link
+              href={`/thinking-out-loud/${prev.slug}`}
+              className="card-link"
+              style={{
+                background: "#0d0d1e",
+                padding: "22px 24px",
+                ["--acc" as string]: prev.accent ?? "#4de3d4",
+              }}
+            >
+              <div className="mono" style={{ fontSize: 8, color: "#6f76ad" }}>
+                ◂ PREVIOUS
+              </div>
+              <div
+                className="mono"
+                style={{
+                  fontSize: 13,
+                  color: "#fff",
+                  lineHeight: 1.7,
+                  marginTop: 12,
+                }}
+              >
+                {prev.title.toUpperCase()}
+              </div>
+            </Link>
+          )}
+        </section>
+      )}
+
+      <SiteFooter right="END OF LOG" />
+    </PageShell>
   );
 }

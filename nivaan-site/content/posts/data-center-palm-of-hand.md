@@ -1,6 +1,9 @@
 ---
 title: A Data Center Will Fit in the Palm of Your Hand in 50 Years
 date: Apr 2026
+category: COMPUTE
+accent: "#4de3d4"
+excerpt: "ENIAC needed a building, a fleet of engineers and constant maintenance. Forty-nine years later, two undergraduates held the same logic in one hand. Today's hyperscale data centers are the ENIAC of the 21st century."
 ---
 
 I was at the Computer History Museum in Mountain View last week, and one exhibit stopped me cold.

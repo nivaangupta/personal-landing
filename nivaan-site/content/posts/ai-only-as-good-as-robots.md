@@ -1,6 +1,9 @@
 ---
 title: AI Is Only As Good As the Robots in the World
 date: Apr 2026
+category: ROBOTICS
+accent: "#ff5f9e"
+excerpt: "Analog → Digital → Analog. A model that reasons brilliantly but only listens through a chat window is still just a very fast screen-worker. Prompting is a transitional behaviour."
 ---
 
 ## Humans Were Never Meant to Sit at Screens

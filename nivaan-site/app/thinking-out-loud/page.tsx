@@ -1,35 +1,137 @@
 import Link from "next/link";
-import { getPageContent } from "@/lib/markdown";
 import { getAllPosts } from "@/lib/markdown";
+import PageShell from "@/components/arcade/PageShell";
+import SiteHeader from "@/components/arcade/SiteHeader";
+import SiteFooter from "@/components/arcade/SiteFooter";
+
+function tagColors(accent: string) {
+  // pink → deep-pink pill, otherwise teal pill
+  if (accent === "#ff5f9e") return { border: "#5c2440", bg: "#250f1b" };
+  return { border: "#235a56", bg: "#0f2523" };
+}
 
 export default async function ThinkingOutLoud() {
-  const { title, description } = await getPageContent("thinking-out-loud");
   const posts = getAllPosts();
 
   return (
-    <div className="space-y-10">
-      <div className="space-y-2">
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-          {title}
-        </h1>
-        <p className="text-gray-500 text-sm">{description}</p>
-      </div>
+    <PageShell maxWidth={1120}>
+      <SiteHeader />
 
-      <ul className="space-y-5">
-        {posts.map((post) => (
-          <li key={post.slug}>
+      <section
+        style={{
+          marginTop: 26,
+          border: "4px solid #2a2a52",
+          background: "linear-gradient(180deg, #10102a 0%, #0b0b1c 100%)",
+          boxShadow: "6px 6px 0 #16163a",
+          padding: "28px 26px",
+        }}
+      >
+        <div
+          className="mono"
+          style={{ fontSize: 9, color: "#ff5f9e", letterSpacing: 1 }}
+        >
+          LEVEL 02 · THE BRAIN DUMP
+        </div>
+        <h1
+          className="mono"
+          style={{
+            fontSize: 26,
+            lineHeight: 1.5,
+            margin: "18px 0 0 0",
+            color: "#fff",
+            textShadow: "3px 3px 0 #ff5f9e",
+          }}
+        >
+          THINKING OUT LOUD
+        </h1>
+        <p style={{ fontSize: 26, color: "#a9afe0", margin: "16px 0 0 0" }}>
+          Loosely formed thoughts, published anyway. Mostly about compute,
+          robots, and the next fifty years.
+        </p>
+      </section>
+
+      <section
+        style={{
+          marginTop: 22,
+          display: "flex",
+          flexDirection: "column",
+          gap: 18,
+        }}
+      >
+        {posts.map((post) => {
+          const accent = post.accent ?? "#4de3d4";
+          const pill = tagColors(accent);
+          return (
             <Link
+              key={post.slug}
               href={`/thinking-out-loud/${post.slug}`}
-              className="group flex items-baseline justify-between gap-6"
+              className="card-link"
+              style={{
+                background: "#0d0d1e",
+                padding: "26px 24px",
+                ["--acc" as string]: accent,
+              }}
             >
-              <span className="text-sm text-gray-900 group-hover:underline underline-offset-4 transition-colors">
-                {post.title}
-              </span>
-              <span className="shrink-0 text-xs text-gray-400">{post.date}</span>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 12,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span
+                  className="mono"
+                  style={{
+                    fontSize: 8,
+                    color: accent,
+                    border: `2px solid ${pill.border}`,
+                    background: pill.bg,
+                    padding: "7px 10px",
+                  }}
+                >
+                  {post.category}
+                </span>
+                <span
+                  style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 2 }}
+                >
+                  {post.date.toUpperCase()}
+                </span>
+              </div>
+              <div
+                className="mono"
+                style={{
+                  fontSize: 15,
+                  color: "#fff",
+                  lineHeight: 1.7,
+                  marginTop: 18,
+                }}
+              >
+                {post.title.toUpperCase()}
+              </div>
+              <p
+                style={{
+                  fontSize: 24,
+                  lineHeight: 1.4,
+                  color: "#a9afe0",
+                  margin: "14px 0 0 0",
+                }}
+              >
+                {post.excerpt}
+              </p>
+              <div
+                className="mono"
+                style={{ fontSize: 8, color: accent, marginTop: 18 }}
+              >
+                READ ▸
+              </div>
             </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+          );
+        })}
+      </section>
+
+      <SiteFooter right="MORE LOADING" />
+    </PageShell>
   );
 }

@@ -18,6 +18,9 @@ export interface PostMeta {
   slug: string;
   title: string;
   date: string;
+  category?: string;
+  accent?: string;
+  excerpt?: string;
 }
 
 export interface Post extends PostMeta {
@@ -62,6 +65,9 @@ export function getAllPosts(): PostMeta[] {
         slug,
         title: data.title ?? slug,
         date: data.date ?? "",
+        category: data.category ?? "",
+        accent: data.accent ?? "#4de3d4",
+        excerpt: data.excerpt ?? "",
       };
     })
     .reverse();
@@ -82,6 +88,9 @@ export async function getPost(slug: string): Promise<Post> {
     slug,
     title: data.title ?? "",
     date: data.date ?? "",
+    category: data.category ?? "",
+    accent: data.accent ?? "#4de3d4",
+    excerpt: data.excerpt ?? "",
     contentHtml,
   };
 }

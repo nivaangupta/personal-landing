@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Insurer {
+  id         String            @id @default(uuid())
+  naicNumber String            @unique @map("naic_number")
+  name       String
+  createdAt  DateTime          @default(now()) @map("created_at")
+  policies   InsurancePolicy[]
+
+  @@map("insurers")
+}
+
+model InsurancePolicy {
+  id            String                @id @default(uuid())
+  insurerId     String                @map("insurer_id")
+  policyNumber  String                @map("policy_number")
+  insuredName   String                @map("insured_name")
+  premium       BigInt
+  taxFee        BigInt                @map("tax_fee")
+  createdAt     DateTime              @default(now()) @map("created_at")
+  insurer       Insurer               @relation(fields: [insurerId], references: [id])
+  financeTerms  FinanceTermPolicy[]
+
+  @@unique([insurerId, policyNumber])
+  @@map("insurance_policies")
+}
+
+enum FinanceTermsStatus {
+  pending
+  agreed
+}
+
+model FinanceTerms {
+  id               String               @id @default(uuid())
+  status           FinanceTermsStatus   @default(pending)
+  dueDate          DateTime             @map("due_date") @db.Date
+  downpaymentTotal BigInt               @map("downpayment_total")
+  amountFinanced   BigInt               @map("amount_financed")
+  agreedAt         DateTime?            @map("agreed_at")
+  createdAt        DateTime             @default(now()) @map("created_at")
+  policies         FinanceTermPolicy[]
+
+  @@index([status])
+  @@index([downpaymentTotal])
+  @@index([dueDate])
+  @@map("finance_terms")
+}
+
+model FinanceTermPolicy {
+  id             String          @id @default(uuid())
+  financeTermsId String          @map("finance_terms_id")
+  policyId       String          @map("policy_id")
+  downpayment    BigInt
+  financeTerms   FinanceTerms    @relation(fields: [financeTermsId], references: [id], onDelete: Cascade)
+  policy         InsurancePolicy @relation(fields: [policyId], references: [id])
+
+  @@unique([financeTermsId, policyId])
+  @@map("finance_term_policies")
+}
