@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
+import { Press_Start_2P, VT323 } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import CRTOverlay from "@/components/arcade/CRTOverlay";
+
+const pressStart = Press_Start_2P({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-press-start",
+  display: "swap",
+});
+
+const vt323 = VT323({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-vt323",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Nivaan Gupta",
-  description: "Personal site of Nivaan Gupta",
+  description:
+    "Nivaan Gupta — cofounder at NapX, building the infrastructure layer for autonomous hotels. Better tools exist. Adoption doesn't.",
 };
 
 export default function RootLayout({
@@ -13,10 +29,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen">
-        <Navbar />
-        <main className="max-w-2xl mx-auto px-6 py-16">{children}</main>
+    <html lang="en" className={`${pressStart.variable} ${vt323.variable}`}>
+      <body>
+        <CRTOverlay />
+        {children}
       </body>
     </html>
   );
