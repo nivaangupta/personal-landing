@@ -81,4 +81,14 @@ books:
     author: "Russell Brunson"
     note: "The framework: build a movement around your idea, not just a product. Useful, but with an important asterisk. This book is written for a very specific type of business, and the book itself is an extended upsell into his ecosystem. If your business fits that mould, there is real value here. If it does not, you will feel that friction on every single page."
     stars: 0.5
+
+  - title: "Rich Dad's Cashflow Quadrant"
+    author: "Robert Kiyosaki"
+    note: "Largely the same idea as Rich Dad Poor Dad, but this one goes much deeper on the application side. I keep coming back to Kiyosaki's writing style — he has a way of making the same lesson land again from a new angle."
+    stars: 1.5
+
+  - title: "Rich Dad's Guide to Investing"
+    author: "Robert Kiyosaki"
+    note: "The line that stuck: what is your one piece of advice for an average investor? Don't be average. The best investing book I have read. Full stop."
+    stars: 3
 ---
