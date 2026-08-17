@@ -58,6 +58,26 @@ const SQUIRT: Px[] = [
   [56.25, 75, 18.75, 12.5, "#4de3d4"],
 ];
 
+const PIKA: Px[] = [
+  [12.5, 0, 18.75, 25, "#ffcc33"],
+  [68.75, 0, 18.75, 25, "#ffcc33"],
+  [12.5, 0, 12.5, 12.5, "#2b2308"],
+  [75, 0, 12.5, 12.5, "#2b2308"],
+  [18.75, 18.75, 62.5, 43.75, "#ffcc33"],
+  [25, 31.25, 12.5, 12.5, "#2b2308"],
+  [62.5, 31.25, 12.5, 12.5, "#2b2308"],
+  [28.125, 34.375, 6.25, 6.25, "#ffffff"],
+  [65.625, 34.375, 6.25, 6.25, "#ffffff"],
+  [9.375, 43.75, 15.625, 12.5, "#ff5f5f"],
+  [75, 43.75, 15.625, 12.5, "#ff5f5f"],
+  [40.625, 50, 18.75, 6.25, "#7a4a10"],
+  [15.625, 62.5, 68.75, 25, "#ffcc33"],
+  [9.375, 68.75, 12.5, 12.5, "#3a2a08"],
+  [78.125, 68.75, 12.5, 12.5, "#3a2a08"],
+  [81.25, 75, 15.625, 15.625, "#ffcc33"],
+  [90.625, 62.5, 9.375, 12.5, "#2b2308"],
+];
+
 const CRIES = [
   "NIVAAN used SHIP IT! It's super effective.",
   "NIVAAN is reading. Do not disturb (much).",
@@ -67,12 +87,14 @@ const CRIES = [
 ];
 
 const LINES: Record<string, string> = {
-  none: "PROF. OAK: Nivaan! Three of these are yours to take. Books that rewired how I think, half-formed thoughts I published anyway, and an open invitation to talk. Pick one — or be greedy, take all three.",
+  none: "PROF. OAK: Nivaan! Four of these are yours to take. Books that rewired how I think, half-formed thoughts I published anyway, the agent skills I actually run with, and an open invitation to talk. Pick one — or be greedy, take all four.",
   grass:
     "BULBAREAD, the grass type. Slow to level, but every point is permanent. 16 books, honest verdicts, no polite ratings.",
   fire: "CHARTHINK, the fire type. Attacks consensus directly. Data centers are the ENIAC of this century, and prompting is a transitional behaviour.",
   water:
     "SQUIRTALK, the water type. High defence, higher reply rate. Calendar slot or email — both actually reach me.",
+  electric:
+    "PIKASKILLS, the electric type. Static charge on contact. Skills I built and skills I steal, all runnable, one downloadable.",
 };
 
 const mono = "mono";
@@ -667,7 +689,7 @@ export default function Home() {
               OAK&apos;S LAB · CHOOSE YOUR STARTER
             </span>
             <span style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 1 }}>
-              3 AVAILABLE · PICK ANY · TAKE ALL THREE
+              4 AVAILABLE · PICK ANY · TAKE ALL FOUR
             </span>
           </div>
 
@@ -712,7 +734,7 @@ export default function Home() {
             style={{
               marginTop: 22,
               display: "grid",
-              gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+              gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
               gap: 18,
             }}
           >
@@ -757,6 +779,27 @@ export default function Home() {
               desc="Thinking Out Loud. Compute, robots, the next fifty years. High damage, low patience for consensus."
               descColor="#d1a08f"
               chooseColor="#ff5f9e"
+            />
+            <StarterCard
+              href="/skills"
+              onHover={() => setHover("electric")}
+              onLeave={() => setHover("none")}
+              bg="#221c08"
+              accent="#ffcc33"
+              sprite={PIKA}
+              spriteAnim="wiggle 1.6s ease-in-out infinite"
+              twinkles={[
+                { l: "10%", t: "8%", s: 8, c: "#ffcc33", a: "2s" },
+                { r: "12%", t: "20%", s: 6, c: "#ffffff", a: "2.4s" },
+              ]}
+              name="PIKASKILLS"
+              tags={[
+                { text: "ELECTRIC", bg: "#ffcc33" },
+                { text: "TOOLS", bg: "#6bff8f" },
+              ]}
+              desc="Skills. What I've built for running agents, plus what's worth stealing. One is a download."
+              descColor="#cdb87d"
+              chooseColor="#ffcc33"
             />
             <StarterCard
               href="/lets-talk"
