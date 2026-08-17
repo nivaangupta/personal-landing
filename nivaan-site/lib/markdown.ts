@@ -20,6 +20,21 @@ export interface ToReadBook {
   note?: string;
 }
 
+export interface RecommendedSkill {
+  name: string;
+  author?: string;
+  url?: string;
+  blurb: string;
+}
+
+export interface OwnSkill {
+  name: string;
+  tagline: string;
+  problem: string;
+  approach: string;
+  mechanics: string[];
+}
+
 export interface PostMeta {
   slug: string;
   title: string;
