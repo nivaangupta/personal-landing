@@ -101,8 +101,66 @@ books:
     author: "Ray Bradbury"
     note: "One of my favourite pieces of fiction, full stop. The ideology underneath it — a world that burns books not out of hatred but out of comfort — is the kind of idea that stays with you long after you close it."
     stars: 1.75
+
+  - title: "I Will Teach You To Be Rich"
+    author: "Ramit Sethi"
+    note: "Genuinely good, and rare in that it is actually actionable — most personal finance books are not. My one hesitation is that it is written for the average reader, and I tend to think about money differently. Still, very well executed for what it sets out to do."
+    stars: 2
+
+  - title: "The $12 Million Stuffed Shark"
+    author: "Don Thompson"
+    note: "A genuinely insightful look at modern art and the economics that drive it — how value gets manufactured in that world. The writing did not always hold my attention, though plenty of people clearly disagree with me on that front."
+    stars: 1.5
+
+  - title: "How I Braved Anu Aunty & Co-Founded a Million Dollar Company"
+    author: "Varun Agarwal"
+    note: "Read this while I was in India thinking about starting something there, and it captured that exact texture of building a startup in that environment. Very engaging, country-specific in a way few books manage — leans more inspiring than informative, and that is fine."
+    stars: 2.25
+
+  - title: "Atomic Habits"
+    author: "James Clear"
+    note: "Breaks every big goal down into the habits that actually produce it, and that reframe alone changes how you approach anything you want in life. One of the most powerful books I have read, full stop."
+    stars: 3
+
+  - title: "The Hard Thing About Hard Things"
+    author: "Ben Horowitz"
+    note: "I wish I had read this years later than I did — back then I could only imagine what running a company would feel like. Reading it now, I suspect it would hit completely differently. Worth picking up again."
+    stars: 1.75
 toRead:
   - title: "The 4-Hour Work Week"
     author: "Timothy Ferriss"
     note: "Have not read it yet. I am more of an all-in person and have never really bought into the side-hustle mindset, so it will be interesting to see the case made for it."
+
+  - title: "Pivot or Die"
+    author: "Gary Shapiro"
+
+  - title: "The Fourth Turning"
+    author: "William Strauss and Neil Howe"
+    note: "Excited for this one — the idea that history moves in cyclical, repeating eras, split into four parts and named accordingly."
+
+  - title: "Leaders Eat Last"
+    author: "Simon Sinek"
+    note: "Start With Why had the biggest impact on me of any book on this list, so I am curious to see what else Sinek has to say."
+
+  - title: "Why Has Nobody Told Me This Before?"
+    author: "Dr Julie Smith"
+    note: "Bought on the strength of the hype around it."
+
+  - title: "The Four Agreements"
+    author: "Don Miguel Ruiz"
+
+  - title: "The Curious Incident of the Dog in the Night-Time"
+    author: "Mark Haddon"
+
+  - title: "The Power of Habit"
+    author: "Charles Duhigg"
+
+  - title: "Deep Work"
+    author: "Cal Newport"
+
+  - title: "Linchpin"
+    author: "Seth Godin"
+
+  - title: "Sleep Smarter"
+    author: "Shawn Stevenson"
 ---
