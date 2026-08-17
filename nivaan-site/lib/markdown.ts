@@ -14,6 +14,12 @@ export interface Book {
   stars: number;
 }
 
+export interface ToReadBook {
+  title: string;
+  author: string;
+  note?: string;
+}
+
 export interface PostMeta {
   slug: string;
   title: string;

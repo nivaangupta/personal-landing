@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getPageContent, type Book } from "@/lib/markdown";
+import { getPageContent, type Book, type ToReadBook } from "@/lib/markdown";
 import PageShell from "@/components/arcade/PageShell";
 import SiteHeader from "@/components/arcade/SiteHeader";
 import SiteFooter from "@/components/arcade/SiteFooter";
@@ -25,6 +25,7 @@ export default async function BookRecommendations() {
   const books = ((data.books ?? []) as Book[])
     .map((b) => ({ ...b, tier: tierOf(b.stars) }))
     .sort((a, b) => b.stars - a.stars);
+  const toRead = (data.toRead ?? []) as ToReadBook[];
 
   const counts: Record<Tier, number> = { S: 0, A: 0, B: 0, C: 0 };
   books.forEach((b) => (counts[b.tier] += 1));
@@ -168,6 +169,67 @@ export default async function BookRecommendations() {
           );
         })}
       </section>
+
+      {/* to read */}
+      {toRead.length > 0 && (
+        <section
+          style={{
+            marginTop: 22,
+            border: "4px solid #2a2a52",
+            background: "linear-gradient(180deg, #10102a 0%, #0b0b1c 100%)",
+            boxShadow: "6px 6px 0 #16163a",
+            padding: "24px 26px",
+          }}
+        >
+          <div
+            className="mono"
+            style={{ fontSize: 9, color: "#4de3d4", letterSpacing: 1 }}
+          >
+            NEXT UP · QUEUE ({toRead.length})
+          </div>
+          <div
+            style={{
+              marginTop: 16,
+              display: "grid",
+              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+              gap: 14,
+            }}
+          >
+            {toRead.map((book) => (
+              <div key={book.title} style={{ padding: "4px 0" }}>
+                <div
+                  className="mono"
+                  style={{ fontSize: 11, color: "#fff", lineHeight: 1.6 }}
+                >
+                  {book.title.toUpperCase()}
+                </div>
+                <div
+                  style={{
+                    fontSize: 19,
+                    color: "#6f76ad",
+                    letterSpacing: 1,
+                    marginTop: 4,
+                  }}
+                >
+                  {book.author.toUpperCase()}
+                </div>
+                {book.note && (
+                  <p
+                    style={{
+                      fontSize: 20,
+                      lineHeight: 1.4,
+                      color: "#a9afe0",
+                      margin: "8px 0 0 0",
+                    }}
+                  >
+                    {book.note}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* recommend CTA */}
       <section

@@ -91,4 +91,18 @@ books:
     author: "Robert Kiyosaki"
     note: "The line that stuck: what is your one piece of advice for an average investor? Don't be average. The best investing book I have read. Full stop."
     stars: 3
+
+  - title: "Eat That Frog!"
+    author: "Brian Tracy"
+    note: "The idea that stuck: do the hardest thing on your list first, before anything else gets a chance to distract you. Genuinely impactful advice, but it felt like one page of insight stretched across a whole book. I still haven't finished it, which tells you something."
+    stars: 0.25
+
+  - title: "Fahrenheit 451"
+    author: "Ray Bradbury"
+    note: "One of my favourite pieces of fiction, full stop. The ideology underneath it — a world that burns books not out of hatred but out of comfort — is the kind of idea that stays with you long after you close it."
+    stars: 1.75
+toRead:
+  - title: "The 4-Hour Work Week"
+    author: "Timothy Ferriss"
+    note: "Have not read it yet. I am more of an all-in person and have never really bought into the side-hustle mindset, so it will be interesting to see the case made for it."
 ---
