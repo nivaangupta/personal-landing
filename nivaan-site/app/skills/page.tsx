@@ -12,6 +12,7 @@ export default async function Skills() {
   const { data } = await getPageContent("skills");
   const recommended = (data.recommended ?? []) as RecommendedSkill[];
   const mine = (data.mine ?? []) as OwnSkill[];
+  const recommendedIntro = (data.recommendedIntro ?? "") as string;
 
   return (
     <PageShell maxWidth={1120}>
@@ -230,6 +231,21 @@ export default async function Skills() {
                     </ul>
                   </div>
                 )}
+
+                {skill.file && (
+                  <a
+                    href={skill.file}
+                    download
+                    className="btn btn-teal"
+                    style={{
+                      display: "inline-block",
+                      marginTop: 20,
+                      fontSize: 10,
+                    }}
+                  >
+                    ⬇ DOWNLOAD SKILL.MD
+                  </a>
+                )}
               </div>
             </article>
           ))}
@@ -262,6 +278,18 @@ export default async function Skills() {
         >
           ◆ RECOMMENDED SKILLS
         </div>
+        {recommendedIntro && (
+          <p
+            style={{
+              fontSize: 23,
+              lineHeight: 1.4,
+              color: "#a9afe0",
+              margin: "0 0 16px 0",
+            }}
+          >
+            {recommendedIntro}
+          </p>
+        )}
         {recommended.length > 0 ? (
           <div
             className="grid-2"

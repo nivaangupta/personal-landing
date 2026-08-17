@@ -33,6 +33,7 @@ export interface OwnSkill {
   problem: string;
   approach: string;
   mechanics: string[];
+  file: string;
 }
 
 export interface PostMeta {
