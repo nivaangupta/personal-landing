@@ -417,7 +417,8 @@ export default function Home() {
                 textShadow: "3px 3px 0 #ff5f9e, 6px 6px 0 rgba(77,227,212,0.35)",
               }}
             >
-              BUILDING THE INFRASTRUCTURE LAYER FOR AUTONOMOUS HOTELS
+              BUILDING THE COLLABORATION INFRASTRUCTURE FOR AGENTS AND
+              ROBOTS IN HOSPITALITY
             </h1>
             <p
               style={{
@@ -451,7 +452,9 @@ export default function Home() {
               <p
                 style={{ margin: 0, fontSize: 26, lineHeight: 1.25, color: "#20234a" }}
               >
-                &quot;Better tools exist. Adoption doesn&apos;t.&quot;
+                &quot;When someone tells me I can&apos;t do something,
+                that&apos;s when I know what I need to figure out
+                next.&quot;
               </p>
               <p
                 style={{
@@ -461,7 +464,7 @@ export default function Home() {
                   letterSpacing: 1,
                 }}
               >
-                — THE PROBLEM I KEEP CHASING
+                — HOW I PICK WHAT&apos;S NEXT
               </p>
             </div>
             <div
