@@ -38,15 +38,15 @@ export default async function BookRecommendations() {
       <section
         style={{
           marginTop: 26,
-          border: "4px solid #2a2a52",
-          background: "linear-gradient(180deg, #10102a 0%, #0b0b1c 100%)",
-          boxShadow: "6px 6px 0 #16163a",
+          border: "4px solid #c7cae8",
+          background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
+          boxShadow: "6px 6px 0 #b7bce0",
           padding: "28px 26px",
         }}
       >
         <div
           className="mono"
-          style={{ fontSize: 9, color: "#4de3d4", letterSpacing: 1 }}
+          style={{ fontSize: 9, color: "#0d7d72", letterSpacing: 1 }}
         >
           LEVEL 01 · THE LIBRARY
         </div>
@@ -56,13 +56,13 @@ export default async function BookRecommendations() {
             fontSize: 26,
             lineHeight: 1.5,
             margin: "18px 0 0 0",
-            color: "#fff",
+            color: "#14163a",
             textShadow: "3px 3px 0 #4de3d4",
           }}
         >
           BOOK RECOMMENDATIONS
         </h1>
-        <p style={{ fontSize: 26, color: "#a9afe0", margin: "16px 0 0 0" }}>
+        <p style={{ fontSize: 26, color: "#383c66", margin: "16px 0 0 0" }}>
           Books that changed how I think. Honest verdicts — including the ones
           that didn&apos;t land.
         </p>
@@ -140,7 +140,7 @@ export default async function BookRecommendations() {
               <div style={{ padding: 20 }}>
                 <div
                   className="mono"
-                  style={{ fontSize: 12, color: "#fff", lineHeight: 1.6 }}
+                  style={{ fontSize: 12, color: "#14163a", lineHeight: 1.6 }}
                 >
                   {book.title.toUpperCase()}
                 </div>
@@ -158,7 +158,7 @@ export default async function BookRecommendations() {
                   style={{
                     fontSize: 23,
                     lineHeight: 1.4,
-                    color: "#a9afe0",
+                    color: "#383c66",
                     margin: "14px 0 0 0",
                   }}
                 >
@@ -175,15 +175,15 @@ export default async function BookRecommendations() {
         <section
           style={{
             marginTop: 22,
-            border: "4px solid #2a2a52",
-            background: "linear-gradient(180deg, #10102a 0%, #0b0b1c 100%)",
-            boxShadow: "6px 6px 0 #16163a",
+            border: "4px solid #c7cae8",
+            background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
+            boxShadow: "6px 6px 0 #b7bce0",
             padding: "24px 26px",
           }}
         >
           <div
             className="mono"
-            style={{ fontSize: 9, color: "#4de3d4", letterSpacing: 1 }}
+            style={{ fontSize: 9, color: "#0d7d72", letterSpacing: 1 }}
           >
             NEXT UP · QUEUE ({toRead.length})
           </div>
@@ -199,7 +199,7 @@ export default async function BookRecommendations() {
               <div key={book.title} style={{ padding: "4px 0" }}>
                 <div
                   className="mono"
-                  style={{ fontSize: 11, color: "#fff", lineHeight: 1.6 }}
+                  style={{ fontSize: 11, color: "#14163a", lineHeight: 1.6 }}
                 >
                   {book.title.toUpperCase()}
                 </div>
@@ -218,7 +218,7 @@ export default async function BookRecommendations() {
                     style={{
                       fontSize: 20,
                       lineHeight: 1.4,
-                      color: "#a9afe0",
+                      color: "#383c66",
                       margin: "8px 0 0 0",
                     }}
                   >
@@ -236,7 +236,7 @@ export default async function BookRecommendations() {
         style={{
           marginTop: 22,
           border: "4px solid #ffcc33",
-          background: "#1a1408",
+          background: "#fdf6e0",
           boxShadow: "6px 6px 0 #4a3a09",
           padding: "24px 26px",
           display: "flex",
@@ -249,11 +249,11 @@ export default async function BookRecommendations() {
         <div>
           <div
             className="mono"
-            style={{ fontSize: 11, color: "#ffcc33", lineHeight: 1.6 }}
+            style={{ fontSize: 11, color: "#8a6400", lineHeight: 1.6 }}
           >
             GOT ONE I SHOULD READ?
           </div>
-          <p style={{ fontSize: 23, color: "#cdb87d", margin: "10px 0 0 0" }}>
+          <p style={{ fontSize: 23, color: "#7a5a1f", margin: "10px 0 0 0" }}>
             Send it over. I read most things people bother to recommend.
           </p>
         </div>

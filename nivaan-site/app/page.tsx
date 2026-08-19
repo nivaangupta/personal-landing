@@ -113,9 +113,9 @@ const infoRow = (label: string, value: string, color: string) => (
       display: "flex",
       justifyContent: "space-between",
       gap: 12,
-      border: "2px solid #2a2a52",
+      border: "2px solid #c7cae8",
       padding: "11px 14px",
-      background: "#101024",
+      background: "#f4f5fc",
     }}
   >
     <span style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 1 }}>
@@ -148,7 +148,7 @@ function StatBar({
           display: "flex",
           justifyContent: "space-between",
           fontSize: 8,
-          color: "#9aa0d0",
+          color: "#4d5286",
           marginBottom: 6,
         }}
       >
@@ -156,7 +156,7 @@ function StatBar({
         <span>{value}</span>
       </div>
       <div
-        style={{ height: 14, background: "#131331", border: "2px solid #2a2a52" }}
+        style={{ height: 14, background: "#e4e6f5", border: "2px solid #c7cae8" }}
       >
         <div
           style={{
@@ -368,10 +368,10 @@ export default function Home() {
         >
           <div
             style={{
-              border: "4px solid #2a2a52",
-              background: "linear-gradient(180deg, #10102a 0%, #0b0b1c 100%)",
+              border: "4px solid #c7cae8",
+              background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
               padding: "30px 30px 26px 30px",
-              boxShadow: "6px 6px 0 #16163a",
+              boxShadow: "6px 6px 0 #b7bce0",
               position: "relative",
               overflow: "hidden",
             }}
@@ -384,8 +384,8 @@ export default function Home() {
                 width: 160,
                 height: 160,
                 background:
-                  "repeating-linear-gradient(45deg, #16163a 0 8px, transparent 8px 16px)",
-                opacity: 0.7,
+                  "repeating-linear-gradient(45deg, #c7cae8 0 8px, transparent 8px 16px)",
+                opacity: 0.45,
               }}
             />
             <div
@@ -401,7 +401,7 @@ export default function Home() {
               />
               <span
                 className={mono}
-                style={{ fontSize: 9, color: "#6bff8f", letterSpacing: 1 }}
+                style={{ fontSize: 9, color: "#1f7a3f", letterSpacing: 1 }}
               >
                 PLAYER 1 &nbsp;·&nbsp; ONLINE
               </span>
@@ -413,7 +413,7 @@ export default function Home() {
                 fontSize: 30,
                 lineHeight: 1.5,
                 margin: "20px 0 0 0",
-                color: "#fff",
+                color: "#14163a",
                 textShadow: "3px 3px 0 #ff5f9e, 6px 6px 0 rgba(77,227,212,0.35)",
               }}
             >
@@ -425,7 +425,7 @@ export default function Home() {
                 fontSize: 25,
                 lineHeight: 1.35,
                 margin: "22px 0 0 0",
-                color: "#a9afe0",
+                color: "#383c66",
               }}
             >
               Cofounder at{" "}
@@ -433,7 +433,7 @@ export default function Home() {
                 href="https://napx.com"
                 target="_blank"
                 rel="noreferrer"
-                style={{ color: "#ffcc33", borderBottom: "3px solid #ffcc33" }}
+                style={{ color: "#8a6400", borderBottom: "3px solid #8a6400" }}
               >
                 NapX
               </a>{" "}
@@ -449,7 +449,7 @@ export default function Home() {
               }}
             >
               <p
-                style={{ margin: 0, fontSize: 26, lineHeight: 1.25, color: "#e6e8ff" }}
+                style={{ margin: 0, fontSize: 26, lineHeight: 1.25, color: "#20234a" }}
               >
                 &quot;Better tools exist. Adoption doesn&apos;t.&quot;
               </p>
@@ -512,14 +512,14 @@ export default function Home() {
                 <div style={{ minWidth: 0 }}>
                   <div
                     className={mono}
-                    style={{ fontSize: 11, color: "#fff", lineHeight: 1.6 }}
+                    style={{ fontSize: 11, color: "#14163a", lineHeight: 1.6 }}
                   >
                     NIVAAN
                   </div>
                   <div
                     style={{
                       fontSize: 21,
-                      color: "#6bff8f",
+                      color: "#1f7a3f",
                       letterSpacing: 1,
                       marginTop: 6,
                     }}
@@ -533,10 +533,10 @@ export default function Home() {
                     style={{
                       marginTop: 8,
                       border: "2px solid #ffcc33",
-                      background: "#1a1408",
+                      background: "#fdf6e0",
                       padding: "6px 8px",
                       fontSize: 19,
-                      color: "#ffcc33",
+                      color: "#8a6400",
                       lineHeight: 1.25,
                     }}
                   >
@@ -614,7 +614,7 @@ export default function Home() {
 
         {/* current quest */}
         <section className="cab" style={{ marginTop: 22 }}>
-          <div className="cab-head" style={{ color: "#ffcc33" }}>
+          <div className="cab-head" style={{ color: "#8a6400" }}>
             ★ CURRENT QUEST
           </div>
           <div
@@ -629,7 +629,7 @@ export default function Home() {
             <div>
               <div
                 className={mono}
-                style={{ fontSize: 18, color: "#fff", letterSpacing: 2 }}
+                style={{ fontSize: 18, color: "#14163a", letterSpacing: 2 }}
               >
                 NAP×
               </div>
@@ -637,7 +637,7 @@ export default function Home() {
                 style={{
                   fontSize: 24,
                   lineHeight: 1.4,
-                  color: "#a9afe0",
+                  color: "#383c66",
                   margin: "14px 0 0 0",
                 }}
               >
@@ -655,10 +655,10 @@ export default function Home() {
                 justifyContent: "center",
               }}
             >
-              {infoRow("STATUS", "STEALTH MODE", "#6bff8f")}
-              {infoRow("ROLE", "COFOUNDER", "#ffcc33")}
-              {infoRow("ORCHESTRATING", "IOT · SAAS · AGENTS", "#4de3d4")}
-              {infoRow("BOSS FIGHT", "LEGACY ADOPTION", "#ff5f9e")}
+              {infoRow("STATUS", "STEALTH MODE", "#1f7a3f")}
+              {infoRow("ROLE", "COFOUNDER", "#8a6400")}
+              {infoRow("ORCHESTRATING", "IOT · SAAS · AGENTS", "#0d7d72")}
+              {infoRow("BOSS FIGHT", "LEGACY ADOPTION", "#b8225f")}
             </div>
           </div>
         </section>
@@ -667,9 +667,9 @@ export default function Home() {
         <section
           style={{
             marginTop: 22,
-            border: "4px solid #2a2a52",
-            background: "linear-gradient(180deg, #101a2e 0%, #0a0e1c 100%)",
-            boxShadow: "6px 6px 0 #16163a",
+            border: "4px solid #c7cae8",
+            background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
+            boxShadow: "6px 6px 0 #b7bce0",
             padding: "26px 24px 28px 24px",
           }}
         >
@@ -684,7 +684,7 @@ export default function Home() {
           >
             <span
               className={mono}
-              style={{ fontSize: 9, color: "#6bff8f", letterSpacing: 1 }}
+              style={{ fontSize: 9, color: "#1f7a3f", letterSpacing: 1 }}
             >
               OAK&apos;S LAB · CHOOSE YOUR STARTER
             </span>
@@ -696,11 +696,11 @@ export default function Home() {
           <div
             style={{
               marginTop: 18,
-              border: "4px solid #ffffff",
-              background: "#101024",
+              border: "4px solid #14163a",
+              background: "#ffffff",
               padding: "18px 20px",
               position: "relative",
-              boxShadow: "inset 0 0 0 3px #2a2a52",
+              boxShadow: "inset 0 0 0 3px #c7cae8",
             }}
           >
             <p
@@ -708,7 +708,7 @@ export default function Home() {
                 margin: 0,
                 fontSize: 25,
                 lineHeight: 1.35,
-                color: "#fff",
+                color: "#14163a",
                 minHeight: 68,
               }}
             >
@@ -721,7 +721,7 @@ export default function Home() {
                 right: 14,
                 bottom: 10,
                 fontSize: 10,
-                color: "#ffcc33",
+                color: "#8a6400",
                 animation: "arrowBob 0.9s ease-in-out infinite",
               }}
             >
@@ -831,7 +831,7 @@ export default function Home() {
             className={mono}
             style={{
               fontSize: 9,
-              color: "#9aa0d0",
+              color: "#4d5286",
               letterSpacing: 1,
               marginBottom: 18,
             }}
@@ -870,10 +870,10 @@ export default function Home() {
         <div
           style={{
             marginTop: 22,
-            border: "4px solid #2a2a52",
-            background: "#101024",
+            border: "4px solid #c7cae8",
+            background: "#f4f5fc",
             overflow: "hidden",
-            boxShadow: "6px 6px 0 #16163a",
+            boxShadow: "6px 6px 0 #b7bce0",
           }}
         >
           <div
@@ -914,7 +914,7 @@ export default function Home() {
           className="cab"
           style={{
             marginTop: 22,
-            background: "linear-gradient(180deg, #10102a 0%, #0a0a18 100%)",
+            background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
           }}
         >
           <div className="cab-head">BADGE CASE · PROGRESS</div>
@@ -1001,14 +1001,14 @@ export default function Home() {
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <div
                 style={{
-                  border: "3px solid #2a2a52",
-                  background: "#101024",
+                  border: "3px solid #c7cae8",
+                  background: "#f4f5fc",
                   padding: 16,
                 }}
               >
                 <div
                   className={mono}
-                  style={{ fontSize: 8, color: "#9aa0d0", letterSpacing: 1 }}
+                  style={{ fontSize: 8, color: "#4d5286", letterSpacing: 1 }}
                 >
                   PARTY
                 </div>
@@ -1033,17 +1033,17 @@ export default function Home() {
                     />
                   ))}
                   <span
-                    style={{ width: 20, height: 20, border: "2px dashed #2a2a52", display: "block" }}
+                    style={{ width: 20, height: 20, border: "2px dashed #c7cae8", display: "block" }}
                   />
                   <span
-                    style={{ width: 20, height: 20, border: "2px dashed #2a2a52", display: "block" }}
+                    style={{ width: 20, height: 20, border: "2px dashed #c7cae8", display: "block" }}
                   />
                 </div>
               </div>
               <div
                 style={{
-                  border: "3px solid #2a2a52",
-                  background: "#101024",
+                  border: "3px solid #c7cae8",
+                  background: "#f4f5fc",
                   padding: 16,
                   display: "flex",
                   flexDirection: "column",
@@ -1051,9 +1051,9 @@ export default function Home() {
                 }}
               >
                 {[
-                  ["REGION", "BAY AREA", "#d8d8f0"],
-                  ["PLAYTIME", "ALL OF IT", "#d8d8f0"],
-                  ["SAVE FILE", "AUTOSAVING", "#6bff8f"],
+                  ["REGION", "BAY AREA", "#14163a"],
+                  ["PLAYTIME", "ALL OF IT", "#14163a"],
+                  ["SAVE FILE", "AUTOSAVING", "#1f7a3f"],
                 ].map(([l, v, c]) => (
                   <div
                     key={l}
@@ -1077,7 +1077,7 @@ export default function Home() {
           </div>
           <div
             style={{
-              borderTop: "4px solid #2a2a52",
+              borderTop: "4px solid #c7cae8",
               padding: "16px 24px",
               display: "flex",
               flexWrap: "wrap",

@@ -43,9 +43,9 @@ export default async function PostPage({
       <article
         style={{
           marginTop: 26,
-          border: "4px solid #2a2a52",
-          background: "#0b0b1c",
-          boxShadow: "6px 6px 0 #16163a",
+          border: "4px solid #c7cae8",
+          background: "#ffffff",
+          boxShadow: "6px 6px 0 #b7bce0",
           padding: "32px 30px 34px 30px",
         }}
       >
@@ -81,7 +81,7 @@ export default async function PostPage({
             fontSize: 22,
             lineHeight: 1.65,
             margin: "20px 0 26px 0",
-            color: "#fff",
+            color: "#14163a",
             textShadow: `3px 3px 0 ${accent}`,
           }}
         >
@@ -107,7 +107,7 @@ export default async function PostPage({
               href={`/thinking-out-loud/${next.slug}`}
               className="card-link"
               style={{
-                background: "#0d0d1e",
+                background: "#ffffff",
                 padding: "22px 24px",
                 ["--acc" as string]: next.accent ?? "#ff5f9e",
               }}
@@ -119,7 +119,7 @@ export default async function PostPage({
                 className="mono"
                 style={{
                   fontSize: 13,
-                  color: "#fff",
+                  color: "#14163a",
                   lineHeight: 1.7,
                   marginTop: 12,
                 }}
@@ -133,7 +133,7 @@ export default async function PostPage({
               href={`/thinking-out-loud/${prev.slug}`}
               className="card-link"
               style={{
-                background: "#0d0d1e",
+                background: "#ffffff",
                 padding: "22px 24px",
                 ["--acc" as string]: prev.accent ?? "#4de3d4",
               }}
@@ -145,7 +145,7 @@ export default async function PostPage({
                 className="mono"
                 style={{
                   fontSize: 13,
-                  color: "#fff",
+                  color: "#14163a",
                   lineHeight: 1.7,
                   marginTop: 12,
                 }}

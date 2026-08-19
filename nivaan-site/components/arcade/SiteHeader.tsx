@@ -16,10 +16,10 @@ const headerStyle: React.CSSProperties = {
   gap: 20,
   alignItems: "center",
   justifyContent: "space-between",
-  border: "4px solid #2a2a52",
-  background: "#0d0d1e",
+  border: "4px solid #c7cae8",
+  background: "#ffffff",
   padding: "14px 18px",
-  boxShadow: "6px 6px 0 #16163a",
+  boxShadow: "6px 6px 0 #b7bce0",
 };
 
 export default function SiteHeader({
@@ -41,7 +41,7 @@ export default function SiteHeader({
           display: "flex",
           alignItems: "center",
           gap: 14,
-          color: "#fff",
+          color: "#14163a",
         }}
       >
         <PixelAvatar size={variant === "post" ? 44 : 48} className="bob" />

@@ -11,15 +11,15 @@ export default function LetsTalk() {
       <section
         style={{
           marginTop: 26,
-          border: "4px solid #2a2a52",
-          background: "linear-gradient(180deg, #10102a 0%, #0b0b1c 100%)",
-          boxShadow: "6px 6px 0 #16163a",
+          border: "4px solid #c7cae8",
+          background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
+          boxShadow: "6px 6px 0 #b7bce0",
           padding: "30px 28px",
         }}
       >
         <div
           className="mono"
-          style={{ fontSize: 9, color: "#ffcc33", letterSpacing: 1 }}
+          style={{ fontSize: 9, color: "#8a6400", letterSpacing: 1 }}
         >
           FINAL LEVEL · CO-OP MODE
         </div>
@@ -29,7 +29,7 @@ export default function LetsTalk() {
             fontSize: 28,
             lineHeight: 1.5,
             margin: "18px 0 0 0",
-            color: "#fff",
+            color: "#14163a",
             textShadow: "3px 3px 0 #ffcc33",
           }}
         >
@@ -38,7 +38,7 @@ export default function LetsTalk() {
         <p
           style={{
             fontSize: 27,
-            color: "#a9afe0",
+            color: "#383c66",
             margin: "18px 0 0 0",
             maxWidth: 720,
           }}
@@ -148,7 +148,7 @@ export default function LetsTalk() {
           className="mono"
           style={{
             fontSize: 9,
-            color: "#9aa0d0",
+            color: "#4d5286",
             letterSpacing: 1,
             marginBottom: 18,
           }}

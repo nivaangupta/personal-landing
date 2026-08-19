@@ -8,20 +8,30 @@
   --font-press: var(--font-press-start), monospace;
   --font-vt: var(--font-vt323), monospace;
 
-  --bg: #07070f;
-  --panel: #0d0d1e;
-  --panel-2: #101024;
-  --border: #2a2a52;
-  --shadow: #16163a;
-  --ink: #d8d8f0;
-  --muted: #6f76ad;
-  --muted-2: #9aa0d0;
-  --body: #a9afe0;
+  --bg: #eef0fa;
+  --panel: #ffffff;
+  --panel-2: #f4f5fc;
+  --border: #c7cae8;
+  --shadow: #b7bce0;
+  --ink: #14163a;
+  --muted: #6b70a0;
+  --muted-2: #4d5286;
+  --body: #383c66;
 
   --teal: #4de3d4;
   --pink: #ff5f9e;
   --gold: #ffcc33;
   --green: #6bff8f;
+
+  /* readable, darker variants of the accents for use as literal text
+     (the bright accents stay as-is for badge/border/sprite fills) */
+  --gold-ink: #8a6400;
+  --teal-ink: #0d7d72;
+  --pink-ink: #b8225f;
+  --green-ink: #1f7a3f;
+
+  /* dark ink used for text sitting on top of a bright accent fill */
+  --on-accent: #07070f;
 }
 
 html,
@@ -37,7 +47,7 @@ body {
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle at 50% 0%, #131230 0%, #07070f 62%);
+  background: radial-gradient(circle at 50% 0%, #fbfbff 0%, #eef0fa 62%);
   background-attachment: fixed;
   font-family: var(--font-vt);
   color: var(--ink);
@@ -45,11 +55,11 @@ body {
 }
 
 a {
-  color: var(--gold);
+  color: var(--gold-ink);
   text-decoration: none;
 }
 a:hover {
-  color: var(--teal);
+  color: var(--teal-ink);
 }
 ::selection {
   background: var(--pink);
@@ -78,7 +88,7 @@ a:hover {
   inset: 0;
   pointer-events: none;
   z-index: 60;
-  background: repeating-linear-gradient(to bottom, rgba(0,0,0,0.34) 0px, rgba(0,0,0,0.34) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 3px);
+  background: repeating-linear-gradient(to bottom, rgba(20,22,58,0.05) 0px, rgba(20,22,58,0.05) 1px, rgba(20,22,58,0) 1px, rgba(20,22,58,0) 3px);
 }
 .crt-flicker {
   position: fixed;
@@ -94,7 +104,7 @@ a:hover {
   inset: 0;
   pointer-events: none;
   z-index: 62;
-  box-shadow: inset 0 0 220px 60px rgba(0,0,0,0.85);
+  box-shadow: inset 0 0 160px 40px rgba(20,22,58,0.10);
 }
 
 /* -------------------------------- shell -------------------------------- */
@@ -119,7 +129,7 @@ a:hover {
   font-family: var(--font-press);
   font-size: 9px;
   letter-spacing: 1px;
-  color: #fff;
+  color: var(--ink);
 }
 
 /* -------------------------------- header nav -------------------------------- */
@@ -127,7 +137,7 @@ a:hover {
   font-family: var(--font-press);
   font-size: 13px;
   letter-spacing: 1px;
-  color: #fff;
+  color: var(--ink);
   text-shadow: 2px 2px 0 var(--pink);
 }
 .nav-link {
@@ -158,14 +168,14 @@ a:hover {
   background: var(--gold);
 }
 .nav-cta:hover {
-  color: #07070f;
-  background: #fff;
-  border-color: #fff;
+  color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
 }
 .nav-cta.is-active {
-  background: #fff;
-  border-color: #fff;
-  color: #07070f;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
 }
 
 /* -------------------------------- buttons -------------------------------- */
@@ -184,15 +194,15 @@ a:hover {
   box-shadow: 5px 5px 0 #7a5c00;
 }
 .btn-gold:hover {
-  background: #fff;
-  border-color: #fff;
-  color: #07070f;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
   transform: translate(2px, 2px);
   box-shadow: 3px 3px 0 #7a5c00;
 }
 .btn-gold.glow { animation: glowBtn 2.8s ease-in-out infinite; }
 .btn-teal {
-  color: var(--teal);
+  color: var(--teal-ink);
   background: var(--panel);
   border-color: var(--teal);
   box-shadow: 5px 5px 0 #10403c;
@@ -241,8 +251,8 @@ a:hover {
 }
 .chip-link:hover {
   color: #07070f;
-  background: var(--hb, #fff);
-  border-color: var(--hb, #fff);
+  background: var(--hb, var(--teal));
+  border-color: var(--hb, var(--teal));
 }
 
 .social-link {
@@ -256,8 +266,8 @@ a:hover {
 }
 .social-link:hover {
   color: #07070f;
-  background: var(--hb, #fff);
-  border-color: var(--hb, #fff);
+  background: var(--hb, var(--teal));
+  border-color: var(--hb, var(--teal));
 }
 
 .footer-social {
@@ -270,8 +280,8 @@ a:hover {
 }
 .footer-social:hover {
   color: #07070f;
-  background: var(--hb, #fff);
-  border-color: var(--hb, #fff);
+  background: var(--hb, var(--teal));
+  border-color: var(--hb, var(--teal));
 }
 
 /* -------------------------------- pixel avatar -------------------------------- */
@@ -298,22 +308,22 @@ a:hover {
   font-family: var(--font-press);
   font-size: 13px;
   line-height: 1.7;
-  color: var(--gold);
+  color: var(--gold-ink);
   margin: 34px 0 0 0;
 }
 .prose-content h3 {
   font-family: var(--font-press);
   font-size: 11px;
   line-height: 1.7;
-  color: var(--teal);
+  color: var(--teal-ink);
   margin: 28px 0 0 0;
 }
 .prose-content a {
-  color: var(--gold);
+  color: var(--gold-ink);
   border-bottom: 3px solid var(--gold);
 }
-.prose-content a:hover { color: var(--teal); border-color: var(--teal); }
-.prose-content strong { color: #fff; }
+.prose-content a:hover { color: var(--teal-ink); border-color: var(--teal); }
+.prose-content strong { color: var(--ink); }
 .prose-content em { font-style: italic; color: inherit; }
 .prose-content hr {
   border: none;
@@ -333,7 +343,7 @@ a:hover {
 /* standalone bold lines become arcade callouts */
 .prose-content p:has(> strong:only-child) {
   border: 4px solid var(--teal);
-  background: #08201e;
+  background: #e5faf7;
   padding: 22px 20px;
   box-shadow: 5px 5px 0 #10403c;
   margin: 28px 0;
@@ -342,7 +352,7 @@ a:hover {
   font-family: var(--font-press);
   font-size: 14px;
   line-height: 1.7;
-  color: var(--teal);
+  color: var(--teal-ink);
 }
 
 /* -------------------------------- responsive -------------------------------- */

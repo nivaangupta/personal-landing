@@ -46,7 +46,7 @@ export default function SiteFooter({
           alignItems: "center",
         }}
       >
-        <Link href="/" className="mono" style={{ fontSize: 8, color: "#9aa0d0" }}>
+        <Link href="/" className="mono" style={{ fontSize: 8, color: "#6b70a0" }}>
           ◂ BACK TO START SCREEN
         </Link>
         <span className="mono" style={{ fontSize: 8, color: "#43497a" }}>

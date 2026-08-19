@@ -10,6 +10,10 @@ function tagColors(accent: string) {
   return { border: "#235a56", bg: "#0f2523" };
 }
 
+function accentInk(accent: string) {
+  return accent === "#ff5f9e" ? "#b8225f" : "#0d7d72";
+}
+
 export default async function ThinkingOutLoud() {
   const posts = getAllPosts();
 
@@ -20,15 +24,15 @@ export default async function ThinkingOutLoud() {
       <section
         style={{
           marginTop: 26,
-          border: "4px solid #2a2a52",
-          background: "linear-gradient(180deg, #10102a 0%, #0b0b1c 100%)",
-          boxShadow: "6px 6px 0 #16163a",
+          border: "4px solid #c7cae8",
+          background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
+          boxShadow: "6px 6px 0 #b7bce0",
           padding: "28px 26px",
         }}
       >
         <div
           className="mono"
-          style={{ fontSize: 9, color: "#ff5f9e", letterSpacing: 1 }}
+          style={{ fontSize: 9, color: "#b8225f", letterSpacing: 1 }}
         >
           LEVEL 02 · THE BRAIN DUMP
         </div>
@@ -38,13 +42,13 @@ export default async function ThinkingOutLoud() {
             fontSize: 26,
             lineHeight: 1.5,
             margin: "18px 0 0 0",
-            color: "#fff",
+            color: "#14163a",
             textShadow: "3px 3px 0 #ff5f9e",
           }}
         >
           THINKING OUT LOUD
         </h1>
-        <p style={{ fontSize: 26, color: "#a9afe0", margin: "16px 0 0 0" }}>
+        <p style={{ fontSize: 26, color: "#383c66", margin: "16px 0 0 0" }}>
           Loosely formed thoughts, published anyway. Mostly about compute,
           robots, and the next fifty years.
         </p>
@@ -67,7 +71,7 @@ export default async function ThinkingOutLoud() {
               href={`/thinking-out-loud/${post.slug}`}
               className="card-link"
               style={{
-                background: "#0d0d1e",
+                background: "#ffffff",
                 padding: "26px 24px",
                 ["--acc" as string]: accent,
               }}
@@ -103,7 +107,7 @@ export default async function ThinkingOutLoud() {
                 className="mono"
                 style={{
                   fontSize: 15,
-                  color: "#fff",
+                  color: "#14163a",
                   lineHeight: 1.7,
                   marginTop: 18,
                 }}
@@ -114,7 +118,7 @@ export default async function ThinkingOutLoud() {
                 style={{
                   fontSize: 24,
                   lineHeight: 1.4,
-                  color: "#a9afe0",
+                  color: "#383c66",
                   margin: "14px 0 0 0",
                 }}
               >
@@ -122,7 +126,7 @@ export default async function ThinkingOutLoud() {
               </p>
               <div
                 className="mono"
-                style={{ fontSize: 8, color: accent, marginTop: 18 }}
+                style={{ fontSize: 8, color: accentInk(accent), marginTop: 18 }}
               >
                 READ ▸
               </div>

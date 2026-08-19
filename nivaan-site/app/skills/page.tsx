@@ -22,15 +22,15 @@ export default async function Skills() {
       <section
         style={{
           marginTop: 26,
-          border: "4px solid #2a2a52",
-          background: "linear-gradient(180deg, #10102a 0%, #0b0b1c 100%)",
-          boxShadow: "6px 6px 0 #16163a",
+          border: "4px solid #c7cae8",
+          background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
+          boxShadow: "6px 6px 0 #b7bce0",
           padding: "28px 26px",
         }}
       >
         <div
           className="mono"
-          style={{ fontSize: 9, color: "#ffcc33", letterSpacing: 1 }}
+          style={{ fontSize: 9, color: "#8a6400", letterSpacing: 1 }}
         >
           LEVEL 03 · THE WORKSHOP
         </div>
@@ -40,13 +40,13 @@ export default async function Skills() {
             fontSize: 26,
             lineHeight: 1.5,
             margin: "18px 0 0 0",
-            color: "#fff",
+            color: "#14163a",
             textShadow: "3px 3px 0 #ffcc33",
           }}
         >
           SKILLS
         </h1>
-        <p style={{ fontSize: 26, color: "#a9afe0", margin: "16px 0 0 0" }}>
+        <p style={{ fontSize: 26, color: "#383c66", margin: "16px 0 0 0" }}>
           Tools I use and build for getting more out of AI coding agents.
           Some I made myself, some I just think are worth stealing.
         </p>
@@ -91,7 +91,7 @@ export default async function Skills() {
           className="mono"
           style={{
             fontSize: 9,
-            color: "#6bff8f",
+            color: "#1f7a3f",
             letterSpacing: 1,
             marginBottom: 14,
           }}
@@ -132,7 +132,7 @@ export default async function Skills() {
                   style={{
                     fontSize: 25,
                     lineHeight: 1.4,
-                    color: "#fff",
+                    color: "#14163a",
                     margin: 0,
                   }}
                 >
@@ -148,7 +148,7 @@ export default async function Skills() {
                 >
                   <div
                     className="mono"
-                    style={{ fontSize: 8, color: "#ff5f9e", letterSpacing: 1 }}
+                    style={{ fontSize: 8, color: "#b8225f", letterSpacing: 1 }}
                   >
                     THE PROBLEM
                   </div>
@@ -156,7 +156,7 @@ export default async function Skills() {
                     style={{
                       fontSize: 22,
                       lineHeight: 1.45,
-                      color: "#a9afe0",
+                      color: "#383c66",
                       margin: "8px 0 0 0",
                     }}
                   >
@@ -173,7 +173,7 @@ export default async function Skills() {
                 >
                   <div
                     className="mono"
-                    style={{ fontSize: 8, color: "#4de3d4", letterSpacing: 1 }}
+                    style={{ fontSize: 8, color: "#0d7d72", letterSpacing: 1 }}
                   >
                     THE APPROACH
                   </div>
@@ -181,7 +181,7 @@ export default async function Skills() {
                     style={{
                       fontSize: 22,
                       lineHeight: 1.45,
-                      color: "#a9afe0",
+                      color: "#383c66",
                       margin: "8px 0 0 0",
                     }}
                   >
@@ -201,7 +201,7 @@ export default async function Skills() {
                       className="mono"
                       style={{
                         fontSize: 8,
-                        color: "#ffcc33",
+                        color: "#8a6400",
                         letterSpacing: 1,
                       }}
                     >
@@ -222,7 +222,7 @@ export default async function Skills() {
                           style={{
                             fontSize: 22,
                             lineHeight: 1.45,
-                            color: "#a9afe0",
+                            color: "#383c66",
                           }}
                         >
                           {m}
@@ -271,7 +271,7 @@ export default async function Skills() {
           className="mono"
           style={{
             fontSize: 9,
-            color: "#4de3d4",
+            color: "#0d7d72",
             letterSpacing: 1,
             marginBottom: 14,
           }}
@@ -283,7 +283,7 @@ export default async function Skills() {
             style={{
               fontSize: 23,
               lineHeight: 1.4,
-              color: "#a9afe0",
+              color: "#383c66",
               margin: "0 0 16px 0",
             }}
           >
@@ -304,7 +304,7 @@ export default async function Skills() {
                 <div style={{ padding: 20 }}>
                   <div
                     className="mono"
-                    style={{ fontSize: 12, color: "#fff", lineHeight: 1.6 }}
+                    style={{ fontSize: 12, color: "#14163a", lineHeight: 1.6 }}
                   >
                     {skill.name.toUpperCase()}
                   </div>
@@ -324,7 +324,7 @@ export default async function Skills() {
                     style={{
                       fontSize: 23,
                       lineHeight: 1.4,
-                      color: "#a9afe0",
+                      color: "#383c66",
                       margin: "14px 0 0 0",
                     }}
                   >
@@ -340,7 +340,7 @@ export default async function Skills() {
                         display: "inline-block",
                         marginTop: 14,
                         fontSize: 9,
-                        color: "#4de3d4",
+                        color: "#0d7d72",
                       }}
                     >
                       VIEW ↗
@@ -371,7 +371,7 @@ export default async function Skills() {
         style={{
           marginTop: 22,
           border: "4px solid #ffcc33",
-          background: "#1a1408",
+          background: "#fdf6e0",
           boxShadow: "6px 6px 0 #4a3a09",
           padding: "24px 26px",
           display: "flex",
@@ -384,11 +384,11 @@ export default async function Skills() {
         <div>
           <div
             className="mono"
-            style={{ fontSize: 11, color: "#ffcc33", lineHeight: 1.6 }}
+            style={{ fontSize: 11, color: "#8a6400", lineHeight: 1.6 }}
           >
             GOT A SKILL I SHOULD TRY?
           </div>
-          <p style={{ fontSize: 23, color: "#cdb87d", margin: "10px 0 0 0" }}>
+          <p style={{ fontSize: 23, color: "#7a5a1f", margin: "10px 0 0 0" }}>
             Send it over. Always looking for better ways to run agents.
           </p>
         </div>
