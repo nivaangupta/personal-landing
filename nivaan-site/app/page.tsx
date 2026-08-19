@@ -415,6 +415,8 @@ export default function Home() {
                 margin: "20px 0 0 0",
                 color: "#14163a",
                 textShadow: "3px 3px 0 #ff5f9e, 6px 6px 0 rgba(77,227,212,0.35)",
+                overflowWrap: "break-word",
+                wordBreak: "break-word",
               }}
             >
               BUILDING THE COLLABORATION INFRASTRUCTURE FOR AGENTS AND
