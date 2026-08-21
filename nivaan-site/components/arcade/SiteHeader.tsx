@@ -45,7 +45,15 @@ export default function SiteHeader({
         }}
       >
         <PixelAvatar size={variant === "post" ? 44 : 48} className="bob" />
-        <span className="brand-name">NIVAAN GUPTA</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <span className="brand-name">NIVAAN GUPTA</span>
+          <span
+            className="mono"
+            style={{ fontSize: 8, color: "#6b70a0", letterSpacing: 0.5 }}
+          >
+            Make it exist first, make it good later.
+          </span>
+        </div>
       </Link>
 
       {variant === "post" ? (
