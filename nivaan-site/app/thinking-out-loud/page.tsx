@@ -4,14 +4,26 @@ import PageShell from "@/components/arcade/PageShell";
 import SiteHeader from "@/components/arcade/SiteHeader";
 import SiteFooter from "@/components/arcade/SiteFooter";
 
+const PILL_COLORS: Record<string, { border: string; bg: string }> = {
+  "#ff5f9e": { border: "#5c2440", bg: "#250f1b" },
+  "#4de3d4": { border: "#235a56", bg: "#0f2523" },
+  "#ffcc33": { border: "#5c4610", bg: "#241f0c" },
+  "#6bff8f": { border: "#23562f", bg: "#0f2416" },
+};
+
 function tagColors(accent: string) {
-  // pink → deep-pink pill, otherwise teal pill
-  if (accent === "#ff5f9e") return { border: "#5c2440", bg: "#250f1b" };
-  return { border: "#235a56", bg: "#0f2523" };
+  return PILL_COLORS[accent] ?? PILL_COLORS["#4de3d4"];
 }
 
+const ACCENT_INK: Record<string, string> = {
+  "#ff5f9e": "#b8225f",
+  "#4de3d4": "#0d7d72",
+  "#ffcc33": "#8a6400",
+  "#6bff8f": "#1f7a3f",
+};
+
 function accentInk(accent: string) {
-  return accent === "#ff5f9e" ? "#b8225f" : "#0d7d72";
+  return ACCENT_INK[accent] ?? ACCENT_INK["#4de3d4"];
 }
 
 export default async function ThinkingOutLoud() {

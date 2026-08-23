@@ -92,7 +92,7 @@ export function getAllPosts(): PostMeta[] {
         excerpt: data.excerpt ?? "",
       };
     })
-    .reverse();
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 }
 
 export async function getPost(slug: string): Promise<Post> {

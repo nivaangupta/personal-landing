@@ -9,9 +9,15 @@ export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
 }
 
+const PILL_COLORS: Record<string, { border: string; bg: string }> = {
+  "#ff5f9e": { border: "#5c2440", bg: "#250f1b" },
+  "#4de3d4": { border: "#235a56", bg: "#0f2523" },
+  "#ffcc33": { border: "#5c4610", bg: "#241f0c" },
+  "#6bff8f": { border: "#23562f", bg: "#0f2416" },
+};
+
 function pill(accent: string) {
-  if (accent === "#ff5f9e") return { border: "#5c2440", bg: "#250f1b" };
-  return { border: "#235a56", bg: "#0f2523" };
+  return PILL_COLORS[accent] ?? PILL_COLORS["#4de3d4"];
 }
 
 export default async function PostPage({
