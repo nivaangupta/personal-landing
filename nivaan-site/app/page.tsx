@@ -78,6 +78,24 @@ const PIKA: Px[] = [
   [90.625, 62.5, 9.375, 12.5, "#2b2308"],
 ];
 
+const PIGEOTTO: Px[] = [
+  [43.75, 0, 12.5, 6.25, "#8a5a2a"],
+  [31.25, 6.25, 37.5, 18.75, "#b8834a"],
+  [25, 25, 50, 37.5, "#b8834a"],
+  [25, 31.25, 12.5, 12.5, "#3a2a1a"],
+  [62.5, 31.25, 12.5, 12.5, "#3a2a1a"],
+  [28.125, 34.375, 6.25, 6.25, "#ffffff"],
+  [65.625, 34.375, 6.25, 6.25, "#ffffff"],
+  [43.75, 43.75, 12.5, 6.25, "#8a5a2a"],
+  [31.25, 50, 37.5, 18.75, "#f0ddb8"],
+  [6.25, 31.25, 18.75, 25, "#6b4423"],
+  [75, 31.25, 18.75, 25, "#6b4423"],
+  [37.5, 75, 12.5, 12.5, "#8a5a2a"],
+  [50, 75, 12.5, 12.5, "#8a5a2a"],
+  [25, 87.5, 12.5, 6.25, "#6b4423"],
+  [62.5, 87.5, 12.5, 6.25, "#6b4423"],
+];
+
 const CRIES = [
   "NIVAAN used SHIP IT! It's super effective.",
   "NIVAAN is reading. Do not disturb (much).",
@@ -87,7 +105,7 @@ const CRIES = [
 ];
 
 const LINES: Record<string, string> = {
-  none: "PROF. OAK: Nivaan! Four of these are yours to take. Books that rewired how I think, half-formed thoughts I published anyway, the agent skills I actually run with, and an open invitation to talk. Pick one — or be greedy, take all four.",
+  none: "PROF. OAK: Nivaan! Five of these are yours to take. Books that rewired how I think, half-formed thoughts I published anyway, the agent skills I actually run with, lines that move me, and an open invitation to talk. Pick one — or be greedy, take all five.",
   grass:
     "BULBAREAD, the grass type. Slow to level, but every point is permanent. 16 books, honest verdicts, no polite ratings.",
   fire: "CHARTHINK, the fire type. Attacks consensus directly. Data centers are the ENIAC of this century, and prompting is a transitional behaviour.",
@@ -95,6 +113,8 @@ const LINES: Record<string, string> = {
     "SQUIRTALK, the water type. High defence, higher reply rate. Calendar slot or email — both actually reach me.",
   electric:
     "PIKASKILLS, the electric type. Static charge on contact. Skills I built and skills I steal, all runnable, one downloadable.",
+  flying:
+    "PIGEQUOTE, the flying type. Carries lines that stuck and drops them when you least expect it. Sixty-plus quotes, zero sources tracked.",
 };
 
 const mono = "mono";
@@ -694,7 +714,7 @@ export default function Home() {
               OAK&apos;S LAB · CHOOSE YOUR STARTER
             </span>
             <span style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 1 }}>
-              4 AVAILABLE · PICK ANY · TAKE ALL FOUR
+              5 AVAILABLE · PICK ANY · TAKE ALL FIVE
             </span>
           </div>
 
@@ -739,7 +759,7 @@ export default function Home() {
             style={{
               marginTop: 22,
               display: "grid",
-              gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+              gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
               gap: 18,
             }}
           >
@@ -805,6 +825,27 @@ export default function Home() {
               desc="Skills. What I've built for running agents, plus what's worth stealing. One is a download."
               descColor="#cdb87d"
               chooseColor="#ffcc33"
+            />
+            <StarterCard
+              href="/quotes"
+              onHover={() => setHover("flying")}
+              onLeave={() => setHover("none")}
+              bg="#1c150a"
+              accent="#c99a5b"
+              sprite={PIGEOTTO}
+              spriteAnim="hop 2.2s ease-in-out infinite"
+              twinkles={[
+                { l: "10%", t: "10%", s: 8, c: "#c99a5b", a: "2.3s" },
+                { r: "12%", t: "22%", s: 6, c: "#ffffff", a: "2.7s" },
+              ]}
+              name="PIGEQUOTE"
+              tags={[
+                { text: "FLYING", bg: "#c99a5b" },
+                { text: "QUOTES", bg: "#ffcc33" },
+              ]}
+              desc="Quotes. Sixty-plus lines that stuck, no sources tracked, just what moved me."
+              descColor="#c2ad8f"
+              chooseColor="#c99a5b"
             />
             <StarterCard
               href="/lets-talk"

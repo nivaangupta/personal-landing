@@ -8,6 +8,7 @@ const NAV = [
   { label: "BOOKS", href: "/book-recommendations", hb: "#4de3d4" },
   { label: "THINKING OUT LOUD", href: "/thinking-out-loud", hb: "#ff5f9e" },
   { label: "SKILLS", href: "/skills", hb: "#ffcc33" },
+  { label: "QUOTES", href: "/quotes", hb: "#c99a5b" },
 ];
 
 const headerStyle: React.CSSProperties = {
