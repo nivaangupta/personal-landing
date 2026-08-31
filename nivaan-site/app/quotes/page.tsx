@@ -4,11 +4,19 @@ import PageShell from "@/components/arcade/PageShell";
 import SiteHeader from "@/components/arcade/SiteHeader";
 import SiteFooter from "@/components/arcade/SiteFooter";
 
-const ACCENTS = ["#4de3d4", "#ff5f9e", "#ffcc33", "#6bff8f"];
+type Category = { name: string; lines: string[] };
+
+const ACCENTS = [
+  { bg: "#4de3d4", ink: "#0d7d72" },
+  { bg: "#ff5f9e", ink: "#b8225f" },
+  { bg: "#ffcc33", ink: "#8a6400" },
+  { bg: "#6bff8f", ink: "#1f7a3f" },
+];
 
 export default async function Quotes() {
   const { data } = await getPageContent("quotes");
-  const quotes = (data.quotes ?? []) as string[];
+  const categories = (data.categories ?? []) as Category[];
+  const total = categories.reduce((sum, c) => sum + c.lines.length, 0);
 
   return (
     <PageShell maxWidth={1120}>
@@ -57,46 +65,60 @@ export default async function Quotes() {
               padding: "7px 12px",
             }}
           >
-            {quotes.length} QUOTES
+            {total} QUOTES
           </span>
         </div>
       </section>
 
-      {/* quote wall */}
-      <section
-        className="grid-2"
-        style={{
-          marginTop: 22,
-          display: "grid",
-          gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-          gap: 18,
-        }}
-      >
-        {quotes.map((q, i) => {
-          const accent = ACCENTS[i % ACCENTS.length];
-          return (
+      {/* quote wall, grouped by category */}
+      {categories.map((cat, ci) => {
+        const accent = ACCENTS[ci % ACCENTS.length];
+        return (
+          <section key={cat.name} style={{ marginTop: 22 }}>
             <div
-              key={i}
-              className="cab"
+              className="mono"
               style={{
-                borderLeft: `6px solid ${accent}`,
-                padding: "20px 22px",
+                fontSize: 9,
+                color: accent.ink,
+                letterSpacing: 1,
+                marginBottom: 14,
               }}
             >
-              <p
-                style={{
-                  fontSize: 23,
-                  lineHeight: 1.45,
-                  color: "#14163a",
-                  margin: 0,
-                }}
-              >
-                &quot;{q}&quot;
-              </p>
+              {cat.name.toUpperCase()}
             </div>
-          );
-        })}
-      </section>
+            <div
+              className="grid-2"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                gap: 18,
+              }}
+            >
+              {cat.lines.map((q, i) => (
+                <div
+                  key={i}
+                  className="cab"
+                  style={{
+                    borderLeft: `4px solid ${accent.bg}`,
+                    padding: "20px 22px",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: 23,
+                      lineHeight: 1.45,
+                      color: "#14163a",
+                      margin: 0,
+                    }}
+                  >
+                    &quot;{q}&quot;
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      })}
 
       {/* recommend CTA */}
       <section
