@@ -17,10 +17,10 @@ const headerStyle: React.CSSProperties = {
   gap: 20,
   alignItems: "center",
   justifyContent: "space-between",
-  border: "4px solid #c7cae8",
+  border: "1px solid #e3e5f2",
   background: "#ffffff",
   padding: "14px 18px",
-  boxShadow: "6px 6px 0 #b7bce0",
+  boxShadow: "0 1px 3px rgba(20,22,58,0.06)",
 };
 
 export default function SiteHeader({

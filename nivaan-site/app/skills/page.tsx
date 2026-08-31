@@ -22,26 +22,19 @@ export default async function Skills() {
       <section
         style={{
           marginTop: 26,
-          border: "4px solid #c7cae8",
-          background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
-          boxShadow: "6px 6px 0 #b7bce0",
+          border: "1px solid #e3e5f2",
+          background: "#ffffff",
+          boxShadow: "0 1px 3px rgba(20,22,58,0.06)",
           padding: "28px 26px",
         }}
       >
-        <div
-          className="mono"
-          style={{ fontSize: 9, color: "#8a6400", letterSpacing: 1 }}
-        >
-          LEVEL 03 · THE WORKSHOP
-        </div>
         <h1
           className="mono"
           style={{
             fontSize: 26,
             lineHeight: 1.5,
-            margin: "18px 0 0 0",
+            margin: 0,
             color: "#14163a",
-            textShadow: "3px 3px 0 #ffcc33",
           }}
         >
           SKILLS
@@ -370,9 +363,9 @@ export default async function Skills() {
       <section
         style={{
           marginTop: 22,
-          border: "4px solid #ffcc33",
+          border: "1px solid #ffcc33",
           background: "#fdf6e0",
-          boxShadow: "6px 6px 0 #4a3a09",
+          boxShadow: "0 1px 3px rgba(122,90,9,0.12)",
           padding: "24px 26px",
           display: "flex",
           flexWrap: "wrap",
@@ -397,7 +390,7 @@ export default async function Skills() {
         </Link>
       </section>
 
-      <SiteFooter right="SAVE POINT REACHED" />
+      <SiteFooter />
     </PageShell>
   );
 }

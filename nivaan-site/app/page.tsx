@@ -4,9 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import PageShell from "@/components/arcade/PageShell";
 import SiteHeader from "@/components/arcade/SiteHeader";
+import SiteFooter from "@/components/arcade/SiteFooter";
 import PixelAvatar from "@/components/arcade/PixelAvatar";
 import PixelSprite, { type Px } from "@/components/arcade/PixelSprite";
-import { SOCIALS } from "@/components/arcade/socials";
 
 const BULBA: Px[] = [
   [18.75, 0, 18.75, 12.5, "#6bff8f"],
@@ -105,7 +105,7 @@ const CRIES = [
 ];
 
 const LINES: Record<string, string> = {
-  none: "PROF. OAK: Nivaan! Five of these are yours to take. Books that rewired how I think, half-formed thoughts I published anyway, the agent skills I actually run with, lines that move me, and an open invitation to talk. Pick one — or be greedy, take all five.",
+  none: "Five of these are yours to take. Books that rewired how I think, half-formed thoughts I published anyway, the agent skills I actually run with, lines that move me, and an open invitation to talk.",
   grass:
     "BULBAREAD, the grass type. Slow to level, but every point is permanent. 16 books, honest verdicts, no polite ratings.",
   fire: "CHARTHINK, the fire type. Attacks consensus directly. Data centers are the ENIAC of this century, and prompting is a transitional behaviour.",
@@ -118,14 +118,6 @@ const LINES: Record<string, string> = {
 };
 
 const mono = "mono";
-const DRIFTS = [
-  { l: "8%", t: "60%", s: 8, c: "#4de3d4", d: "9s", delay: "0s" },
-  { l: "22%", t: "80%", s: 6, c: "#ff5f9e", d: "13s", delay: "2s" },
-  { l: "41%", t: "70%", s: 10, c: "#ffcc33", d: "11s", delay: "4s" },
-  { l: "63%", t: "88%", s: 6, c: "#6bff8f", d: "15s", delay: "1s" },
-  { l: "79%", t: "66%", s: 8, c: "#4de3d4", d: "10s", delay: "6s" },
-  { l: "91%", t: "84%", s: 6, c: "#ffcc33", d: "14s", delay: "3s" },
-];
 
 const infoRow = (label: string, value: string, color: string) => (
   <div
@@ -133,9 +125,9 @@ const infoRow = (label: string, value: string, color: string) => (
       display: "flex",
       justifyContent: "space-between",
       gap: 12,
-      border: "2px solid #c7cae8",
+      border: "1px solid #e3e5f2",
       padding: "11px 14px",
-      background: "#f4f5fc",
+      background: "#f6f7fc",
     }}
   >
     <span style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 1 }}>
@@ -144,52 +136,6 @@ const infoRow = (label: string, value: string, color: string) => (
     <span style={{ fontSize: 21, color, letterSpacing: 1 }}>{value}</span>
   </div>
 );
-
-function StatBar({
-  label,
-  value,
-  pct,
-  from,
-  to,
-  delay,
-}: {
-  label: string;
-  value: string;
-  pct: number;
-  from: string;
-  to: string;
-  delay: string;
-}) {
-  return (
-    <div>
-      <div
-        className={mono}
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          fontSize: 8,
-          color: "#4d5286",
-          marginBottom: 6,
-        }}
-      >
-        <span>{label}</span>
-        <span>{value}</span>
-      </div>
-      <div
-        style={{ height: 14, background: "#e4e6f5", border: "2px solid #c7cae8" }}
-      >
-        <div
-          style={{
-            height: "100%",
-            width: `${pct}%`,
-            background: `repeating-linear-gradient(90deg, ${from} 0 6px, ${to} 6px 12px)`,
-            animation: `barGrow ${delay} ease-out`,
-          }}
-        />
-      </div>
-    </div>
-  );
-}
 
 function StarterCard({
   href,
@@ -344,828 +290,485 @@ export default function Home() {
   const dialog = LINES[hover] ?? LINES.none;
 
   return (
-    <>
-      {/* drifting pixel dust */}
-      <div
-        aria-hidden
+    <PageShell maxWidth={1120}>
+      <SiteHeader />
+
+      {/* hero + profile card */}
+      <section
         style={{
-          position: "fixed",
-          inset: 0,
-          pointerEvents: "none",
-          zIndex: 0,
-          overflow: "hidden",
+          marginTop: 26,
+          display: "grid",
+          gridTemplateColumns: "minmax(0, 1.55fr) minmax(0, 1fr)",
+          gap: 22,
+          alignItems: "stretch",
         }}
+        className="grid-collapse"
       >
-        {DRIFTS.map((d, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              left: d.l,
-              top: d.t,
-              width: d.s,
-              height: d.s,
-              background: d.c,
-              animation: `drift ${d.d} linear infinite ${d.delay}`,
-            }}
-          />
-        ))}
-      </div>
-
-      <PageShell maxWidth={1120}>
-        <SiteHeader />
-
-        {/* hero + trainer card */}
-        <section
+        <div
           style={{
-            marginTop: 26,
-            display: "grid",
-            gridTemplateColumns: "minmax(0, 1.55fr) minmax(0, 1fr)",
-            gap: 22,
-            alignItems: "stretch",
+            border: "1px solid #e3e5f2",
+            background: "#ffffff",
+            padding: "30px 30px 26px 30px",
+            boxShadow: "0 1px 3px rgba(20,22,58,0.06)",
           }}
-          className="grid-collapse"
         >
-          <div
+          <h1
+            className={mono}
             style={{
-              border: "4px solid #c7cae8",
-              background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
-              padding: "30px 30px 26px 30px",
-              boxShadow: "6px 6px 0 #b7bce0",
-              position: "relative",
-              overflow: "hidden",
+              fontSize: 30,
+              lineHeight: 1.5,
+              margin: 0,
+              color: "#14163a",
+              overflowWrap: "break-word",
+              wordBreak: "break-word",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                right: -30,
-                top: -30,
-                width: 160,
-                height: 160,
-                background:
-                  "repeating-linear-gradient(45deg, #c7cae8 0 8px, transparent 8px 16px)",
-                opacity: 0.45,
-              }}
-            />
-            <div
-              style={{
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
+            BUILDING THE COLLABORATION INFRASTRUCTURE FOR AGENTS AND
+            ROBOTS IN HOSPITALITY
+          </h1>
+          <p
+            style={{
+              fontSize: 25,
+              lineHeight: 1.35,
+              margin: "22px 0 0 0",
+              color: "#383c66",
+            }}
+          >
+            Cofounder at{" "}
+            <a
+              href="https://napx.com"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: "#8a6400", borderBottom: "1px solid #8a6400" }}
             >
-              <span
-                style={{ width: 10, height: 10, background: "#6bff8f", display: "block" }}
-              />
-              <span
-                className={mono}
-                style={{ fontSize: 9, color: "#1f7a3f", letterSpacing: 1 }}
-              >
-                PLAYER 1 &nbsp;·&nbsp; ONLINE
-              </span>
-            </div>
-            <h1
-              className={mono}
-              style={{
-                position: "relative",
-                fontSize: 30,
-                lineHeight: 1.5,
-                margin: "20px 0 0 0",
-                color: "#14163a",
-                textShadow: "3px 3px 0 #ff5f9e, 6px 6px 0 rgba(77,227,212,0.35)",
-                overflowWrap: "break-word",
-                wordBreak: "break-word",
-              }}
+              NapX
+            </a>{" "}
+            — the orchestration layer for IoT, SaaS, humanoids and AI agents
+            inside a property. Currently in stealth.
+          </p>
+          <div
+            style={{
+              marginTop: 24,
+              borderLeft: "3px solid #4de3d4",
+              padding: "6px 0 6px 16px",
+            }}
+          >
+            <p
+              style={{ margin: 0, fontSize: 26, lineHeight: 1.25, color: "#20234a" }}
             >
-              BUILDING THE COLLABORATION INFRASTRUCTURE FOR AGENTS AND
-              ROBOTS IN HOSPITALITY
-            </h1>
+              &quot;When someone tells me I can&apos;t do something,
+              that&apos;s when I know what I need to figure out
+              next.&quot;
+            </p>
             <p
               style={{
-                position: "relative",
-                fontSize: 25,
-                lineHeight: 1.35,
-                margin: "22px 0 0 0",
-                color: "#383c66",
+                margin: "4px 0 0 0",
+                fontSize: 19,
+                color: "#6f76ad",
+                letterSpacing: 1,
               }}
             >
-              Cofounder at{" "}
-              <a
-                href="https://napx.com"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: "#8a6400", borderBottom: "3px solid #8a6400" }}
-              >
-                NapX
-              </a>{" "}
-              — the orchestration layer for IoT, SaaS, humanoids and AI agents
-              inside a property. Currently in stealth.
+              — HOW I PICK WHAT&apos;S NEXT
             </p>
-            <div
-              style={{
-                position: "relative",
-                marginTop: 24,
-                borderLeft: "6px solid #4de3d4",
-                padding: "6px 0 6px 16px",
-              }}
-            >
-              <p
-                style={{ margin: 0, fontSize: 26, lineHeight: 1.25, color: "#20234a" }}
-              >
-                &quot;When someone tells me I can&apos;t do something,
-                that&apos;s when I know what I need to figure out
-                next.&quot;
-              </p>
-              <p
-                style={{
-                  margin: "4px 0 0 0",
-                  fontSize: 19,
-                  color: "#6f76ad",
-                  letterSpacing: 1,
-                }}
-              >
-                — HOW I PICK WHAT&apos;S NEXT
-              </p>
-            </div>
-            <div
-              style={{
-                position: "relative",
-                marginTop: 26,
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 12,
-              }}
-            >
-              <Link href="/lets-talk" className="btn btn-gold glow">
-                ▶ PRESS START
-              </Link>
-              <a
-                href="https://napx.com"
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-teal"
-              >
-                VISIT NAPX ↗
-              </a>
-            </div>
           </div>
-
-          {/* trainer card */}
-          <div
-            className="cab"
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            <div className="cab-head">TRAINER CARD</div>
-            <div
-              style={{
-                padding: "22px 20px",
-                display: "flex",
-                flexDirection: "column",
-                gap: 18,
-                flex: 1,
-              }}
-            >
-              <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-                <PixelAvatar
-                  size={88}
-                  className="bob pokeable"
-                  onClick={() => setPokes((p) => p + 1)}
-                  title="poke me"
-                />
-                <div style={{ minWidth: 0 }}>
-                  <div
-                    className={mono}
-                    style={{ fontSize: 11, color: "#14163a", lineHeight: 1.6 }}
-                  >
-                    NIVAAN
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 21,
-                      color: "#1f7a3f",
-                      letterSpacing: 1,
-                      marginTop: 6,
-                    }}
-                  >
-                    CLASS: COFOUNDER
-                  </div>
-                  <div style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 1 }}>
-                    GUILD: NAPX INC.
-                  </div>
-                  <div
-                    style={{
-                      marginTop: 8,
-                      border: "2px solid #ffcc33",
-                      background: "#fdf6e0",
-                      padding: "6px 8px",
-                      fontSize: 19,
-                      color: "#8a6400",
-                      lineHeight: 1.25,
-                    }}
-                  >
-                    {cry}
-                  </div>
-                </div>
-              </div>
-
-              <div
-                style={{ display: "flex", flexDirection: "column", gap: 12 }}
-              >
-                <StatBar
-                  label="SHIPPING"
-                  value="92"
-                  pct={92}
-                  from="#6bff8f"
-                  to="#4bd96f"
-                  delay="1.4s"
-                />
-                <StatBar
-                  label="READING"
-                  value="84"
-                  pct={84}
-                  from="#4de3d4"
-                  to="#35b3a7"
-                  delay="1.7s"
-                />
-                <StatBar
-                  label="PATIENCE FOR STATUS QUO"
-                  value="07"
-                  pct={7}
-                  from="#ff5f9e"
-                  to="#cc3f78"
-                  delay="2s"
-                />
-              </div>
-
-              <div
-                style={{
-                  marginTop: "auto",
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: 8,
-                }}
-              >
-                <a
-                  href="https://x.com/nivusd"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="social-link"
-                >
-                  X
-                </a>
-                <a
-                  href="https://github.com/nivaangupta"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="social-link"
-                >
-                  GITHUB
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/nivaangupta/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="social-link"
-                  style={{ gridColumn: "span 2", ["--hb" as string]: "#4de3d4" }}
-                >
-                  LINKEDIN
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* current quest */}
-        <section className="cab" style={{ marginTop: 22 }}>
-          <div className="cab-head" style={{ color: "#8a6400" }}>
-            ★ CURRENT QUEST
-          </div>
-          <div
-            className="grid-collapse"
-            style={{
-              padding: "26px 24px",
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
-              gap: 26,
-            }}
-          >
-            <div>
-              <div
-                className={mono}
-                style={{ fontSize: 18, color: "#14163a", letterSpacing: 2 }}
-              >
-                NAP×
-              </div>
-              <p
-                style={{
-                  fontSize: 24,
-                  lineHeight: 1.4,
-                  color: "#383c66",
-                  margin: "14px 0 0 0",
-                }}
-              >
-                Reimagining properties for the agentic era. One infrastructure
-                layer that lets every device, system, agent and humanoid in a
-                hotel act as one. The hard part was never the tech — it was
-                getting people to adopt it. That&apos;s the whole game.
-              </p>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 10,
-                justifyContent: "center",
-              }}
-            >
-              {infoRow("STATUS", "STEALTH MODE", "#1f7a3f")}
-              {infoRow("ROLE", "COFOUNDER", "#8a6400")}
-              {infoRow("ORCHESTRATING", "IOT · SAAS · AGENTS", "#0d7d72")}
-              {infoRow("BOSS FIGHT", "LEGACY ADOPTION", "#b8225f")}
-            </div>
-          </div>
-        </section>
-
-        {/* choose your starter */}
-        <section
-          style={{
-            marginTop: 22,
-            border: "4px solid #c7cae8",
-            background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
-            boxShadow: "6px 6px 0 #b7bce0",
-            padding: "26px 24px 28px 24px",
-          }}
-        >
           <div
             style={{
+              marginTop: 26,
               display: "flex",
               flexWrap: "wrap",
               gap: 12,
-              alignItems: "center",
-              justifyContent: "space-between",
             }}
           >
-            <span
-              className={mono}
-              style={{ fontSize: 9, color: "#1f7a3f", letterSpacing: 1 }}
+            <Link href="/lets-talk" className="btn btn-gold">
+              LET&apos;S TALK
+            </Link>
+            <a
+              href="https://napx.com"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-teal"
             >
-              OAK&apos;S LAB · CHOOSE YOUR STARTER
-            </span>
-            <span style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 1 }}>
-              5 AVAILABLE · PICK ANY · TAKE ALL FIVE
-            </span>
-          </div>
-
-          <div
-            style={{
-              marginTop: 18,
-              border: "4px solid #14163a",
-              background: "#ffffff",
-              padding: "18px 20px",
-              position: "relative",
-              boxShadow: "inset 0 0 0 3px #c7cae8",
-            }}
-          >
-            <p
-              style={{
-                margin: 0,
-                fontSize: 25,
-                lineHeight: 1.35,
-                color: "#14163a",
-                minHeight: 68,
-              }}
-            >
-              {dialog}
-            </p>
-            <span
-              className={mono}
-              style={{
-                position: "absolute",
-                right: 14,
-                bottom: 10,
-                fontSize: 10,
-                color: "#8a6400",
-                animation: "arrowBob 0.9s ease-in-out infinite",
-              }}
-            >
-              ▼
-            </span>
-          </div>
-
-          <div
-            className="grid-starters"
-            style={{
-              marginTop: 22,
-              display: "grid",
-              gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
-              gap: 18,
-            }}
-          >
-            <StarterCard
-              href="/book-recommendations"
-              onHover={() => setHover("grass")}
-              onLeave={() => setHover("none")}
-              bg="#0d1a12"
-              accent="#6bff8f"
-              sprite={BULBA}
-              spriteAnim="hop 2.4s ease-in-out infinite"
-              twinkles={[
-                { l: "12%", t: "6%", s: 8, c: "#6bff8f", a: "2.2s" },
-                { r: "14%", t: "22%", s: 6, c: "#ffffff", a: "2.6s" },
-              ]}
-              name="BULBAREAD"
-              tags={[
-                { text: "GRASS", bg: "#6bff8f" },
-                { text: "LORE", bg: "#4de3d4" },
-              ]}
-              desc="Book Recommendations. 16 books, honest verdicts, S-to-C tiers. Slow growth, permanent buffs."
-              descColor="#8fb79c"
-              chooseColor="#6bff8f"
-            />
-            <StarterCard
-              href="/thinking-out-loud"
-              onHover={() => setHover("fire")}
-              onLeave={() => setHover("none")}
-              bg="#1c0f14"
-              accent="#ff5f9e"
-              sprite={CHAR}
-              spriteAnim="wiggle 1.8s ease-in-out infinite"
-              twinkles={[
-                { l: "14%", t: "14%", s: 6, c: "#ffcc33", a: "2.4s" },
-                { r: "10%", t: "4%", s: 8, c: "#ff5f9e", a: "2.8s" },
-              ]}
-              name="CHARTHINK"
-              tags={[
-                { text: "FIRE", bg: "#ff8c3a" },
-                { text: "TAKES", bg: "#ff5f9e" },
-              ]}
-              desc="Thinking Out Loud. Compute, robots, the next fifty years. High damage, low patience for consensus."
-              descColor="#d1a08f"
-              chooseColor="#ff5f9e"
-            />
-            <StarterCard
-              href="/skills"
-              onHover={() => setHover("electric")}
-              onLeave={() => setHover("none")}
-              bg="#221c08"
-              accent="#ffcc33"
-              sprite={PIKA}
-              spriteAnim="wiggle 1.6s ease-in-out infinite"
-              twinkles={[
-                { l: "10%", t: "8%", s: 8, c: "#ffcc33", a: "2s" },
-                { r: "12%", t: "20%", s: 6, c: "#ffffff", a: "2.4s" },
-              ]}
-              name="PIKASKILLS"
-              tags={[
-                { text: "ELECTRIC", bg: "#ffcc33" },
-                { text: "TOOLS", bg: "#6bff8f" },
-              ]}
-              desc="Skills. What I've built for running agents, plus what's worth stealing. One is a download."
-              descColor="#cdb87d"
-              chooseColor="#ffcc33"
-            />
-            <StarterCard
-              href="/quotes"
-              onHover={() => setHover("flying")}
-              onLeave={() => setHover("none")}
-              bg="#1c150a"
-              accent="#c99a5b"
-              sprite={PIGEOTTO}
-              spriteAnim="hop 2.2s ease-in-out infinite"
-              twinkles={[
-                { l: "10%", t: "10%", s: 8, c: "#c99a5b", a: "2.3s" },
-                { r: "12%", t: "22%", s: 6, c: "#ffffff", a: "2.7s" },
-              ]}
-              name="PIGEQUOTE"
-              tags={[
-                { text: "FLYING", bg: "#c99a5b" },
-                { text: "QUOTES", bg: "#ffcc33" },
-              ]}
-              desc="Quotes. Sixty-plus lines that stuck, no sources tracked, just what moved me."
-              descColor="#c2ad8f"
-              chooseColor="#c99a5b"
-            />
-            <StarterCard
-              href="/lets-talk"
-              onHover={() => setHover("water")}
-              onLeave={() => setHover("none")}
-              bg="#0b1622"
-              accent="#4de3d4"
-              sprite={SQUIRT}
-              spriteAnim="hop 2.9s ease-in-out infinite"
-              twinkles={[
-                { l: "10%", t: "10%", s: 8, c: "#4de3d4", a: "2.5s" },
-                { r: "16%", t: "26%", s: 6, c: "#ffffff", a: "2.1s" },
-              ]}
-              name="SQUIRTALK"
-              tags={[
-                { text: "WATER", bg: "#4de3d4" },
-                { text: "SOCIAL", bg: "#ffcc33" },
-              ]}
-              desc="Let's Talk. Calendar slot or email, both reach me. Best defence: actually replying to people."
-              descColor="#8fabc4"
-              chooseColor="#4de3d4"
-            />
-          </div>
-        </section>
-
-        {/* bag / inventory */}
-        <section className="cab" style={{ marginTop: 22, padding: "22px 24px" }}>
-          <div
-            className={mono}
-            style={{
-              fontSize: 9,
-              color: "#4d5286",
-              letterSpacing: 1,
-              marginBottom: 18,
-            }}
-          >
-            BAG · INVENTORY
-          </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-            {[
-              { t: "HOSPITALITY TECH", c: "#4de3d4", b: "#235a56", bg: "#0f2523" },
-              { t: "AGENTIC SYSTEMS", c: "#ffcc33", b: "#5c4610", bg: "#241f0c" },
-              { t: "ROBOTICS", c: "#ff5f9e", b: "#5c2440", bg: "#250f1b" },
-              { t: "GO-TO-MARKET", c: "#6bff8f", b: "#23562f", bg: "#0f2416" },
-              { t: "FIRST PRINCIPLES", c: "#9aa0d0", b: "#2a2a52", bg: "#101024" },
-              { t: "5AM STARTS", c: "#9aa0d0", b: "#2a2a52", bg: "#101024" },
-              { t: "LONG BOOK LISTS", c: "#9aa0d0", b: "#2a2a52", bg: "#101024" },
-              { t: "ARGUING WITH DEFAULTS", c: "#9aa0d0", b: "#2a2a52", bg: "#101024" },
-            ].map((it) => (
-              <span
-                key={it.t}
-                style={{
-                  fontSize: 21,
-                  letterSpacing: 1,
-                  color: it.c,
-                  border: `2px solid ${it.b}`,
-                  background: it.bg,
-                  padding: "8px 13px",
-                }}
-              >
-                {it.t}
-              </span>
-            ))}
-          </div>
-        </section>
-
-        {/* marquee */}
-        <div
-          style={{
-            marginTop: 22,
-            border: "4px solid #c7cae8",
-            background: "#f4f5fc",
-            overflow: "hidden",
-            boxShadow: "6px 6px 0 #b7bce0",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              width: "max-content",
-              animation: "marquee 26s linear infinite",
-            }}
-          >
-            {[0, 1].map((k) => (
-              <div
-                key={k}
-                className={mono}
-                style={{
-                  display: "flex",
-                  gap: 34,
-                  padding: "12px 17px",
-                  fontSize: 9,
-                  color: "#6f76ad",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <span>NAPX · STEALTH MODE</span>
-                <span style={{ color: "#ffcc33" }}>★</span>
-                <span>BETTER TOOLS EXIST. ADOPTION DOESN&apos;T.</span>
-                <span style={{ color: "#4de3d4" }}>★</span>
-                <span>INFRASTRUCTURE FOR AUTONOMOUS HOTELS</span>
-                <span style={{ color: "#ff5f9e" }}>★</span>
-                <span>NOW READING · ALWAYS</span>
-                <span style={{ color: "#6bff8f" }}>★</span>
-              </div>
-            ))}
+              VISIT NAPX ↗
+            </a>
           </div>
         </div>
 
-        {/* badge case footer */}
-        <footer
+        {/* profile / trainer card */}
+        <div
           className="cab"
-          style={{
-            marginTop: 22,
-            background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
-          }}
+          style={{ display: "flex", flexDirection: "column" }}
         >
-          <div className="cab-head">BADGE CASE · PROGRESS</div>
+          <div className="cab-head">TRAINER CARD</div>
           <div
-            className="grid-collapse"
             style={{
-              padding: 24,
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 1fr)",
-              gap: 26,
+              padding: "22px 20px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 18,
+              flex: 1,
             }}
           >
-            <div>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-                  gap: 10,
-                }}
-              >
-                {[
-                  { label: "READER", c: "#6bff8f", bg: "#0f2416", shape: "pentagon", earned: true },
-                  { label: "WRITER", c: "#ff5f9e", bg: "#250f1b", shape: "diamond", earned: true },
-                  { label: "FOUNDER", c: "#ffcc33", bg: "#241f0c", shape: "star", earned: true },
-                  { label: "BUILDER", c: "#4de3d4", bg: "#0f2523", shape: "square", earned: true },
-                  { label: "SHIPPED V1", c: "#2a2a52", bg: "#101024", shape: "pentagon", earned: false },
-                  { label: "OUT OF STEALTH", c: "#2a2a52", bg: "#101024", shape: "diamond", earned: false },
-                  { label: "FIRST 100", c: "#2a2a52", bg: "#101024", shape: "square", earned: false },
-                  { label: "???", c: "#2a2a52", bg: "#101024", shape: "star", earned: false },
-                ].map((b) => {
-                  const clip: Record<string, string | undefined> = {
-                    pentagon: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)",
-                    diamond: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                    star: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                    square: undefined,
-                  };
-                  return (
-                    <div
-                      key={b.label}
-                      style={{
-                        border: `3px solid ${b.c}`,
-                        background: b.bg,
-                        padding: "12px 8px",
-                        textAlign: "center",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: 22,
-                          height: 22,
-                          margin: "0 auto",
-                          background: b.c,
-                          clipPath: clip[b.shape],
-                        }}
-                      />
-                      <div
-                        className={mono}
-                        style={{
-                          fontSize: 7,
-                          color: b.earned ? b.c : "#43497a",
-                          marginTop: 10,
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        {b.label}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <p
-                style={{
-                  fontSize: 21,
-                  color: "#6f76ad",
-                  margin: "16px 0 0 0",
-                  lineHeight: 1.35,
-                }}
-              >
-                4 of 8 earned. The greyed-out ones are the whole reason I get up
-                at 5am.
-              </p>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              <div
-                style={{
-                  border: "3px solid #c7cae8",
-                  background: "#f4f5fc",
-                  padding: 16,
-                }}
-              >
+            <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+              <PixelAvatar
+                size={88}
+                className="bob pokeable"
+                onClick={() => setPokes((p) => p + 1)}
+                title="poke me"
+              />
+              <div style={{ minWidth: 0 }}>
                 <div
                   className={mono}
-                  style={{ fontSize: 8, color: "#4d5286", letterSpacing: 1 }}
+                  style={{ fontSize: 11, color: "#14163a", lineHeight: 1.6 }}
                 >
-                  PARTY
+                  NIVAAN
                 </div>
                 <div
                   style={{
-                    display: "flex",
-                    gap: 10,
-                    marginTop: 14,
-                    flexWrap: "wrap",
+                    fontSize: 21,
+                    color: "#1f7a3f",
+                    letterSpacing: 1,
+                    marginTop: 6,
                   }}
                 >
-                  {["#6bff8f", "#ff8c3a", "#4de3d4", "#ffcc33"].map((c, i) => (
-                    <span
-                      key={c}
-                      style={{
-                        width: 20,
-                        height: 20,
-                        background: c,
-                        display: "block",
-                        animation: `hop 2.2s ease-in-out infinite ${i * 0.2}s`,
-                      }}
-                    />
-                  ))}
-                  <span
-                    style={{ width: 20, height: 20, border: "2px dashed #c7cae8", display: "block" }}
-                  />
-                  <span
-                    style={{ width: 20, height: 20, border: "2px dashed #c7cae8", display: "block" }}
-                  />
+                  Cofounder, NapX
+                </div>
+                <div style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 1 }}>
+                  Bay Area
+                </div>
+                <div
+                  style={{
+                    marginTop: 8,
+                    border: "1px solid #ffcc33",
+                    background: "#fdf6e0",
+                    padding: "6px 8px",
+                    fontSize: 19,
+                    color: "#8a6400",
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {cry}
                 </div>
               </div>
-              <div
-                style={{
-                  border: "3px solid #c7cae8",
-                  background: "#f4f5fc",
-                  padding: 16,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 9,
-                }}
-              >
-                {[
-                  ["REGION", "BAY AREA", "#14163a"],
-                  ["PLAYTIME", "ALL OF IT", "#14163a"],
-                  ["SAVE FILE", "AUTOSAVING", "#1f7a3f"],
-                ].map(([l, v, c]) => (
-                  <div
-                    key={l}
-                    style={{ display: "flex", justifyContent: "space-between", gap: 12 }}
-                  >
-                    <span style={{ fontSize: 20, color: "#6f76ad", letterSpacing: 1 }}>
-                      {l}
-                    </span>
-                    <span style={{ fontSize: 20, color: c, letterSpacing: 1 }}>{v}</span>
-                  </div>
-                ))}
-              </div>
-              <Link
-                href="/lets-talk"
-                className="btn btn-gold"
-                style={{ textAlign: "center", fontSize: 10, padding: "14px 12px" }}
-              >
-                CHALLENGE ME ▸
-              </Link>
             </div>
+
+            <div
+              style={{
+                marginTop: "auto",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 8,
+              }}
+            >
+              <a
+                href="https://x.com/nivusd"
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+              >
+                X
+              </a>
+              <a
+                href="https://github.com/nivaangupta"
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+              >
+                GITHUB
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nivaangupta/"
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+                style={{ gridColumn: "span 2", ["--hb" as string]: "#4de3d4" }}
+              >
+                LINKEDIN
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* what I'm building */}
+      <section className="cab" style={{ marginTop: 22 }}>
+        <div className="cab-head" style={{ color: "#8a6400" }}>
+          WHAT I&apos;M BUILDING
+        </div>
+        <div
+          className="grid-collapse"
+          style={{
+            padding: "26px 24px",
+            display: "grid",
+            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
+            gap: 26,
+          }}
+        >
+          <div>
+            <div
+              className={mono}
+              style={{ fontSize: 18, color: "#14163a", letterSpacing: 2 }}
+            >
+              NAP×
+            </div>
+            <p
+              style={{
+                fontSize: 24,
+                lineHeight: 1.4,
+                color: "#383c66",
+                margin: "14px 0 0 0",
+              }}
+            >
+              Reimagining properties for the agentic era. One infrastructure
+              layer that lets every device, system, agent and humanoid in a
+              hotel act as one. The hard part was never the tech — it was
+              getting people to adopt it.
+            </p>
           </div>
           <div
             style={{
-              borderTop: "4px solid #c7cae8",
-              padding: "16px 24px",
               display: "flex",
-              flexWrap: "wrap",
-              gap: 14,
-              justifyContent: "space-between",
-              alignItems: "center",
+              flexDirection: "column",
+              gap: 10,
+              justifyContent: "center",
             }}
           >
-            <span className={mono} style={{ fontSize: 8, color: "#43497a" }}>
-              © 2026 NIVAAN GUPTA
-            </span>
-            <div
+            {infoRow("STATUS", "STEALTH MODE", "#1f7a3f")}
+            {infoRow("ROLE", "COFOUNDER", "#8a6400")}
+            {infoRow("ORCHESTRATING", "IOT · SAAS · AGENTS", "#0d7d72")}
+            {infoRow("BIGGEST CHALLENGE", "LEGACY ADOPTION", "#b8225f")}
+          </div>
+        </div>
+      </section>
+
+      {/* choose a starter */}
+      <section
+        style={{
+          marginTop: 22,
+          border: "1px solid #e3e5f2",
+          background: "#ffffff",
+          boxShadow: "0 1px 3px rgba(20,22,58,0.06)",
+          padding: "26px 24px 28px 24px",
+        }}
+      >
+        <span
+          className={mono}
+          style={{ fontSize: 9, color: "#1f7a3f", letterSpacing: 1 }}
+        >
+          CHOOSE A STARTER
+        </span>
+
+        <div
+          style={{
+            marginTop: 18,
+            border: "1px solid #c7cae8",
+            background: "#f6f7fc",
+            padding: "18px 20px",
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              fontSize: 25,
+              lineHeight: 1.35,
+              color: "#14163a",
+              minHeight: 68,
+            }}
+          >
+            {dialog}
+          </p>
+        </div>
+
+        <div
+          className="grid-starters"
+          style={{
+            marginTop: 22,
+            display: "grid",
+            gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
+            gap: 18,
+          }}
+        >
+          <StarterCard
+            href="/book-recommendations"
+            onHover={() => setHover("grass")}
+            onLeave={() => setHover("none")}
+            bg="#0d1a12"
+            accent="#6bff8f"
+            sprite={BULBA}
+            spriteAnim="hop 2.4s ease-in-out infinite"
+            twinkles={[
+              { l: "12%", t: "6%", s: 8, c: "#6bff8f", a: "2.2s" },
+              { r: "14%", t: "22%", s: 6, c: "#ffffff", a: "2.6s" },
+            ]}
+            name="BULBAREAD"
+            tags={[
+              { text: "GRASS", bg: "#6bff8f" },
+              { text: "LORE", bg: "#4de3d4" },
+            ]}
+            desc="Book Recommendations. 16 books, honest verdicts, S-to-C tiers. Slow growth, permanent buffs."
+            descColor="#8fb79c"
+            chooseColor="#6bff8f"
+          />
+          <StarterCard
+            href="/thinking-out-loud"
+            onHover={() => setHover("fire")}
+            onLeave={() => setHover("none")}
+            bg="#1c0f14"
+            accent="#ff5f9e"
+            sprite={CHAR}
+            spriteAnim="wiggle 1.8s ease-in-out infinite"
+            twinkles={[
+              { l: "14%", t: "14%", s: 6, c: "#ffcc33", a: "2.4s" },
+              { r: "10%", t: "4%", s: 8, c: "#ff5f9e", a: "2.8s" },
+            ]}
+            name="CHARTHINK"
+            tags={[
+              { text: "FIRE", bg: "#ff8c3a" },
+              { text: "TAKES", bg: "#ff5f9e" },
+            ]}
+            desc="Thinking Out Loud. Compute, robots, the next fifty years. High damage, low patience for consensus."
+            descColor="#d1a08f"
+            chooseColor="#ff5f9e"
+          />
+          <StarterCard
+            href="/skills"
+            onHover={() => setHover("electric")}
+            onLeave={() => setHover("none")}
+            bg="#221c08"
+            accent="#ffcc33"
+            sprite={PIKA}
+            spriteAnim="wiggle 1.6s ease-in-out infinite"
+            twinkles={[
+              { l: "10%", t: "8%", s: 8, c: "#ffcc33", a: "2s" },
+              { r: "12%", t: "20%", s: 6, c: "#ffffff", a: "2.4s" },
+            ]}
+            name="PIKASKILLS"
+            tags={[
+              { text: "ELECTRIC", bg: "#ffcc33" },
+              { text: "TOOLS", bg: "#6bff8f" },
+            ]}
+            desc="Skills. What I've built for running agents, plus what's worth stealing. One is a download."
+            descColor="#cdb87d"
+            chooseColor="#ffcc33"
+          />
+          <StarterCard
+            href="/quotes"
+            onHover={() => setHover("flying")}
+            onLeave={() => setHover("none")}
+            bg="#1c150a"
+            accent="#c99a5b"
+            sprite={PIGEOTTO}
+            spriteAnim="hop 2.2s ease-in-out infinite"
+            twinkles={[
+              { l: "10%", t: "10%", s: 8, c: "#c99a5b", a: "2.3s" },
+              { r: "12%", t: "22%", s: 6, c: "#ffffff", a: "2.7s" },
+            ]}
+            name="PIGEQUOTE"
+            tags={[
+              { text: "FLYING", bg: "#c99a5b" },
+              { text: "QUOTES", bg: "#ffcc33" },
+            ]}
+            desc="Quotes. Sixty-plus lines that stuck, no sources tracked, just what moved me."
+            descColor="#c2ad8f"
+            chooseColor="#c99a5b"
+          />
+          <StarterCard
+            href="/lets-talk"
+            onHover={() => setHover("water")}
+            onLeave={() => setHover("none")}
+            bg="#0b1622"
+            accent="#4de3d4"
+            sprite={SQUIRT}
+            spriteAnim="hop 2.9s ease-in-out infinite"
+            twinkles={[
+              { l: "10%", t: "10%", s: 8, c: "#4de3d4", a: "2.5s" },
+              { r: "16%", t: "26%", s: 6, c: "#ffffff", a: "2.1s" },
+            ]}
+            name="SQUIRTALK"
+            tags={[
+              { text: "WATER", bg: "#4de3d4" },
+              { text: "SOCIAL", bg: "#ffcc33" },
+            ]}
+            desc="Let's Talk. Calendar slot or email, both reach me. Best defence: actually replying to people."
+            descColor="#8fabc4"
+            chooseColor="#4de3d4"
+          />
+        </div>
+      </section>
+
+      {/* focus areas */}
+      <section className="cab" style={{ marginTop: 22, padding: "22px 24px" }}>
+        <div
+          className={mono}
+          style={{
+            fontSize: 9,
+            color: "#4d5286",
+            letterSpacing: 1,
+            marginBottom: 18,
+          }}
+        >
+          FOCUS AREAS
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+          {[
+            { t: "HOSPITALITY TECH", c: "#4de3d4", b: "#235a56", bg: "#0f2523" },
+            { t: "AGENTIC SYSTEMS", c: "#ffcc33", b: "#5c4610", bg: "#241f0c" },
+            { t: "ROBOTICS", c: "#ff5f9e", b: "#5c2440", bg: "#250f1b" },
+            { t: "GO-TO-MARKET", c: "#6bff8f", b: "#23562f", bg: "#0f2416" },
+            { t: "FIRST PRINCIPLES", c: "#4d5286", b: "#e3e5f2", bg: "#f6f7fc" },
+            { t: "5AM STARTS", c: "#4d5286", b: "#e3e5f2", bg: "#f6f7fc" },
+            { t: "LONG BOOK LISTS", c: "#4d5286", b: "#e3e5f2", bg: "#f6f7fc" },
+            { t: "ARGUING WITH DEFAULTS", c: "#4d5286", b: "#e3e5f2", bg: "#f6f7fc" },
+          ].map((it) => (
+            <span
+              key={it.t}
               style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 8,
-                justifyContent: "center",
+                fontSize: 21,
+                letterSpacing: 1,
+                color: it.c,
+                border: `1px solid ${it.b}`,
+                background: it.bg,
+                padding: "8px 13px",
               }}
             >
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="footer-social"
-                  style={{ ["--hb" as string]: s.hb }}
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
-            <span className={mono} style={{ fontSize: 8, color: "#43497a" }}>
-              INSERT COIN
-              <span style={{ animation: "caret 1s steps(1) infinite", color: "#ffcc33" }}>
-                _
-              </span>
+              {it.t}
             </span>
+          ))}
+        </div>
+      </section>
+
+      {/* closing CTA */}
+      <section
+        style={{
+          marginTop: 22,
+          border: "1px solid #ffcc33",
+          background: "#fdf6e0",
+          boxShadow: "0 1px 3px rgba(122,90,9,0.12)",
+          padding: "24px 26px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 18,
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div>
+          <div
+            className="mono"
+            style={{ fontSize: 11, color: "#8a6400", lineHeight: 1.6 }}
+          >
+            GOT SOMETHING TO BUILD?
           </div>
-        </footer>
-        <div style={{ height: 34 }} />
-      </PageShell>
-    </>
+          <p style={{ fontSize: 23, color: "#7a5a1f", margin: "10px 0 0 0" }}>
+            Calendar slot or email, both actually reach me.
+          </p>
+        </div>
+        <Link href="/lets-talk" className="btn btn-gold">
+          LET&apos;S TALK ▸
+        </Link>
+      </section>
+
+      <SiteFooter />
+      <div style={{ height: 34 }} />
+    </PageShell>
   );
 }

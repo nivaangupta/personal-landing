@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { SOCIALS } from "./socials";
 
-export default function SiteFooter({
-  right = "SAVE POINT REACHED",
-}: {
-  right?: string;
-}) {
+export default function SiteFooter() {
   return (
     <footer
       style={{
@@ -47,15 +43,10 @@ export default function SiteFooter({
         }}
       >
         <Link href="/" className="mono" style={{ fontSize: 8, color: "#6b70a0" }}>
-          ◂ BACK TO START SCREEN
+          ◂ HOME
         </Link>
         <span className="mono" style={{ fontSize: 8, color: "#43497a" }}>
-          {right}
-          <span
-            style={{ color: "#ffcc33", animation: "caret 1s steps(1) infinite" }}
-          >
-            _
-          </span>
+          © 2026 NIVAAN GUPTA
         </span>
       </div>
     </footer>

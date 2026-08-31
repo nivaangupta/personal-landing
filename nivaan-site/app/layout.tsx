@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, VT323 } from "next/font/google";
 import "./globals.css";
-import CRTOverlay from "@/components/arcade/CRTOverlay";
 
 const pressStart = Press_Start_2P({
   weight: "400",
@@ -31,7 +30,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${pressStart.variable} ${vt323.variable}`}>
       <body>
-        <CRTOverlay />
         {children}
       </body>
     </html>

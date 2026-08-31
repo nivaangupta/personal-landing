@@ -11,26 +11,19 @@ export default function LetsTalk() {
       <section
         style={{
           marginTop: 26,
-          border: "4px solid #c7cae8",
-          background: "linear-gradient(180deg, #ffffff 0%, #f4f5fc 100%)",
-          boxShadow: "6px 6px 0 #b7bce0",
+          border: "1px solid #e3e5f2",
+          background: "#ffffff",
+          boxShadow: "0 1px 3px rgba(20,22,58,0.06)",
           padding: "30px 28px",
         }}
       >
-        <div
-          className="mono"
-          style={{ fontSize: 9, color: "#8a6400", letterSpacing: 1 }}
-        >
-          FINAL LEVEL · CO-OP MODE
-        </div>
         <h1
           className="mono"
           style={{
             fontSize: 28,
             lineHeight: 1.5,
-            margin: "18px 0 0 0",
+            margin: 0,
             color: "#14163a",
-            textShadow: "3px 3px 0 #ffcc33",
           }}
         >
           LET&apos;S TALK
@@ -64,29 +57,22 @@ export default function LetsTalk() {
           rel="noreferrer"
           className="contact-card"
           style={{
-            background: "#1a1408",
+            background: "#ffffff",
             padding: "26px 24px",
-            color: "#ffcc33",
-            animation: "glowBtn 2.8s ease-in-out infinite",
             ["--acc" as string]: "#ffcc33",
-            ["--acc-sh" as string]: "#7a5c00",
-            ["--acc-hover" as string]: "#241c09",
+            ["--acc-hover" as string]: "#fdf6e0",
           }}
         >
-          <div style={{ display: "flex", gap: 4, marginBottom: 18 }}>
-            <span style={{ width: 26, height: 18, background: "#ffcc33", display: "block" }} />
-            <span style={{ width: 10, height: 18, background: "#7a5c00", display: "block" }} />
-          </div>
           <div
             className="mono"
-            style={{ fontSize: 13, color: "#fff", lineHeight: 1.6 }}
+            style={{ fontSize: 13, color: "#14163a", lineHeight: 1.6 }}
           >
             BOOK A TIME
           </div>
           <p
             style={{
               fontSize: 24,
-              color: "#cdb87d",
+              color: "#383c66",
               margin: "12px 0 0 0",
               lineHeight: 1.35,
             }}
@@ -95,7 +81,7 @@ export default function LetsTalk() {
           </p>
           <div
             className="mono"
-            style={{ fontSize: 9, color: "#ffcc33", marginTop: 18 }}
+            style={{ fontSize: 9, color: "#8a6400", marginTop: 18 }}
           >
             CAL.COM ↗
           </div>
@@ -105,29 +91,22 @@ export default function LetsTalk() {
           href="mailto:nivaangupta29@gmail.com"
           className="contact-card"
           style={{
-            background: "#08201e",
+            background: "#ffffff",
             padding: "26px 24px",
-            color: "#4de3d4",
             ["--acc" as string]: "#4de3d4",
-            ["--acc-sh" as string]: "#10403c",
-            ["--acc-hover" as string]: "#0c2b28",
+            ["--acc-hover" as string]: "#e5faf7",
           }}
         >
-          <div style={{ display: "flex", gap: 4, marginBottom: 18 }}>
-            <span style={{ width: 14, height: 18, background: "#4de3d4", display: "block" }} />
-            <span style={{ width: 14, height: 18, background: "#10403c", display: "block" }} />
-            <span style={{ width: 14, height: 18, background: "#4de3d4", display: "block" }} />
-          </div>
           <div
             className="mono"
-            style={{ fontSize: 13, color: "#fff", lineHeight: 1.6 }}
+            style={{ fontSize: 13, color: "#14163a", lineHeight: 1.6 }}
           >
             SEND AN EMAIL
           </div>
           <p
             style={{
               fontSize: 24,
-              color: "#86c9c3",
+              color: "#383c66",
               margin: "12px 0 0 0",
               lineHeight: 1.35,
             }}
@@ -136,7 +115,7 @@ export default function LetsTalk() {
           </p>
           <div
             className="mono"
-            style={{ fontSize: 9, color: "#4de3d4", marginTop: 18 }}
+            style={{ fontSize: 9, color: "#0d7d72", marginTop: 18 }}
           >
             COMPOSE ↗
           </div>
@@ -178,7 +157,7 @@ export default function LetsTalk() {
         </div>
       </section>
 
-      <SiteFooter right="PLAYER 2 READY" />
+      <SiteFooter />
     </PageShell>
   );
 }

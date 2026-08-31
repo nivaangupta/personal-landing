@@ -49,9 +49,9 @@ export default async function PostPage({
       <article
         style={{
           marginTop: 26,
-          border: "4px solid #c7cae8",
+          border: "1px solid #e3e5f2",
           background: "#ffffff",
-          boxShadow: "6px 6px 0 #b7bce0",
+          boxShadow: "0 1px 3px rgba(20,22,58,0.06)",
           padding: "32px 30px 34px 30px",
         }}
       >
@@ -88,7 +88,6 @@ export default async function PostPage({
             lineHeight: 1.65,
             margin: "20px 0 26px 0",
             color: "#14163a",
-            textShadow: `3px 3px 0 ${accent}`,
           }}
         >
           {post.title.toUpperCase()}
@@ -163,7 +162,7 @@ export default async function PostPage({
         </section>
       )}
 
-      <SiteFooter right="END OF LOG" />
+      <SiteFooter />
     </PageShell>
   );
 }
