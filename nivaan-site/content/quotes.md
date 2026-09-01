@@ -4,6 +4,7 @@ description: Lines that move me.
 categories:
   - name: "Speed & Iteration"
     lines:
+      - "Disappear for the next 45 days and beat yourself to 12 months ahead."
       - "You need short term paranoia to keep you alive long enough to exploit long term optimism."
       - "Iteration is a privilege you earn by moving fast."
       - "The only moat is speed."
