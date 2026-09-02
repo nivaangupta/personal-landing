@@ -51,7 +51,7 @@ categories:
 
   - name: "People & Relationships"
     lines:
-      - "People criticizing you are not criticizing you — they're a reflection on themselves."
+      - "People criticizing you often aren't criticizing you — they're revealing themselves."
       - "Resentment is like drinking poison and hoping it will kill your enemies."
       - "You can have everything in life you want if you will just help other people get what they want."
       - "When you want to convey something to someone, your responsibility is not to tell them the knowledge — your responsibility is to find the right source to convey the knowledge."
