@@ -35,6 +35,7 @@ categories:
 
   - name: "Fear, Courage & Action"
     lines:
+      - "Excellence is the capacity of bearing pain."
       - "Without fear there is no courage. As you face fear on a daily basis, you cultivate courage and turn it into a habit."
       - "Cynics don't want results, they want an excuse to not take action."
       - "Your playing it safe or small does not serve the world."
