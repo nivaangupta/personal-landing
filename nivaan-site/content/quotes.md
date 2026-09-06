@@ -14,6 +14,7 @@ categories:
 
   - name: "Discipline & Consistency"
     lines:
+      - "The curse of being disciplined is that every day looks the same. The curse of being indisciplined is that every year looks the same."
       - "Stick to the plan, not your mood."
       - "The market disciplines anyone who doesn't discipline himself."
       - "What's simple to do is also simple not to do. The magic isn't the complexity, it's doing the simple things for long enough."
