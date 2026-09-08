@@ -85,6 +85,7 @@ categories:
 
   - name: "Purpose & the Long Game"
     lines:
+      - "Any lesson you refuse to learn will repeat itself until you do."
       - "If you don't commit to meaningful work, life will fill your time with busy work."
       - "The day you sow the seeds is not the day you eat the fruits."
       - "Make it exist first, make it good later."
