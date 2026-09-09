@@ -88,6 +88,7 @@ categories:
       - "Any lesson you refuse to learn will repeat itself until you do."
       - "If you don't commit to meaningful work, life will fill your time with busy work."
       - "The day you sow the seeds is not the day you eat the fruits."
+      - "Everyone is jealous of what you got, no one is jealous of how you got it."
       - "Make it exist first, make it good later."
       - "All animals are biologically designed to maximize energy in and minimize energy out. People are basically designed to want to not work. Do with that info what you need to."
 ---
