@@ -15,6 +15,7 @@ categories:
   - name: "Discipline & Consistency"
     lines:
       - "The curse of being disciplined is that every day looks the same. The curse of being indisciplined is that every year looks the same."
+      - "In some seasons of life, just showing up and maintaining is winning."
       - "Stick to the plan, not your mood."
       - "The market disciplines anyone who doesn't discipline himself."
       - "What's simple to do is also simple not to do. The magic isn't the complexity, it's doing the simple things for long enough."
@@ -37,6 +38,8 @@ categories:
   - name: "Fear, Courage & Action"
     lines:
       - "Excellence is the capacity of bearing pain."
+      - "The faster you can become okay with looking bad, the faster you can start getting good."
+      - "The game is not about not losing. It's about not quitting when you do."
       - "Without fear there is no courage. As you face fear on a daily basis, you cultivate courage and turn it into a habit."
       - "Cynics don't want results, they want an excuse to not take action."
       - "Your playing it safe or small does not serve the world."
@@ -63,6 +66,7 @@ categories:
   - name: "Leadership & Business"
     lines:
       - "The art of leadership is saying no, not saying yes. It is very easy to say yes."
+      - "You can build a business overnight. You just can't build the skills to build a business overnight."
       - "Doing a business is as simple as it gets: make a promise, and fulfill it. Many people are not able to do just that."
       - "If there's a difference between what you say and what you do, believe in what you do every time."
       - "You can sell anything if you're able to sell the idea that people are not being sold to."
