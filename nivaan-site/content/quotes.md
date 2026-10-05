@@ -33,6 +33,7 @@ categories:
       - "Every action you take is a vote for the type of person you wish to become."
       - "You become a successful person way before you become successful."
       - "The experiences you don't want in life shape you."
+      - "Most people are not good at being not good at something, and that's the biggest problem."
       - "You need to be okay with feeling like a complete noob who didn't know what he was doing, over and over and over again."
 
   - name: "Fear, Courage & Action"
