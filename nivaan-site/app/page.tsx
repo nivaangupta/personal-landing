@@ -247,7 +247,6 @@ export default function Home() {
               color: "#383c66",
             }}
           >
-            Cofounder at{" "}
             <a
               href="https://napx.com"
               target="_blank"
@@ -256,8 +255,8 @@ export default function Home() {
             >
               NapX
             </a>{" "}
-            — the orchestration layer for IoT, SaaS, humanoids and AI agents
-            inside a property. Currently in stealth.
+            is an autonomous cloud hotel company reimagining the way forward
+            for property management.
           </p>
           <div
             style={{
