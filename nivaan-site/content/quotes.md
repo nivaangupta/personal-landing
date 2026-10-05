@@ -40,6 +40,7 @@ categories:
       - "Excellence is the capacity of bearing pain."
       - "The faster you can become okay with looking bad, the faster you can start getting good."
       - "The game is not about not losing. It's about not quitting when you do."
+      - "100% of meaningful success is just your ability to outlast uncertainty."
       - "Without fear there is no courage. As you face fear on a daily basis, you cultivate courage and turn it into a habit."
       - "Cynics don't want results, they want an excuse to not take action."
       - "Your playing it safe or small does not serve the world."
