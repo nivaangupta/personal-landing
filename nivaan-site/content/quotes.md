@@ -39,6 +39,7 @@ categories:
   - name: "Fear, Courage & Action"
     lines:
       - "Excellence is the capacity of bearing pain."
+      - "'Take more pain quicker' is the fastest and most effective way to achieving anything in life."
       - "The faster you can become okay with looking bad, the faster you can start getting good."
       - "The game is not about not losing. It's about not quitting when you do."
       - "100% of meaningful success is just your ability to outlast uncertainty."
@@ -87,6 +88,7 @@ categories:
       - "Our brain overestimates the danger of anything that seems like an unlikely threat, while massively underestimating sure-shot but distant threats — like the harm of cigarettes, or the decay of muscle from inactivity."
       - "Specific knowledge is knowledge that you cannot be trained for. If society can train you, it can train someone else, and replace you."
       - "Intelligence is whatever machines haven't done yet."
+      - "Rules are for the obedience of fools and the guidance of wise men."
       - "Learning quickly, and knowing how to learn, is one of the most important skills you can have."
 
   - name: "Purpose & the Long Game"
