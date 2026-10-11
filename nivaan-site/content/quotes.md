@@ -31,6 +31,7 @@ categories:
       - "Your level of success will rarely exceed your level of personal development, because success is something you attract by the person you become."
       - "How you do one thing is how you do everything: every time you choose to do the easy thing over the right thing, you're becoming the type of person who does what's easy, rather than what's right."
       - "Every action you take is a vote for the type of person you wish to become."
+      - "Truly confident people are just people who have given their brain repeated evidence that they can stick to and achieve really hard things in life."
       - "You become a successful person way before you become successful."
       - "The experiences you don't want in life shape you."
       - "Most people are not good at being not good at something, and that's the biggest problem."
