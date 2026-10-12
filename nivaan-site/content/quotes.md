@@ -56,6 +56,7 @@ categories:
       - "You're not sad, depressed, jealous, or angry — you are what witnesses these emotions. You are what remains after these temporary feelings fade away."
       - "Pride is not the opposite of shame, but its source."
       - "You are one thought away from having the greatest experience of your life."
+      - "Life's coming from you and not at you."
       - "Chaos was the law of nature; order was the dream of man."
 
   - name: "People & Relationships"
