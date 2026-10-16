@@ -23,6 +23,7 @@ categories:
       - "You can get pretty damn far in life by just doing what you've said you'll do. No fancy hacks needed."
       - "Ready is not a feeling, it's a decision."
       - "Talk is a substitute for action."
+      - "The world doesn't care about your potential, it only cares about what you did."
       - "Don't complain. 80% of people don't care about your problems, and 20% are glad you have them."
       - "Don't let bozos outwork you."
 
