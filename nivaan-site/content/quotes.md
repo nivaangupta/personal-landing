@@ -73,6 +73,7 @@ categories:
       - "The art of leadership is saying no, not saying yes. It is very easy to say yes."
       - "You can build a business overnight. You just can't build the skills to build a business overnight."
       - "Doing a business is as simple as it gets: make a promise, and fulfill it. Many people are not able to do just that."
+      - "Complex problems often have simple solutions that need courage."
       - "If there's a difference between what you say and what you do, believe in what you do every time."
       - "You can sell anything if you're able to sell the idea that people are not being sold to."
       - "Long term thinking improves short term decision making. Future intent influences and often determines present actions."
