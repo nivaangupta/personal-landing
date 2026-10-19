@@ -41,6 +41,8 @@ categories:
   - name: "Fear, Courage & Action"
     lines:
       - "Excellence is the capacity of bearing pain."
+      - "Excellence is beautiful from a distance but brutal up close."
+      - "The lust for comfort murders the passion of the soul."
       - "'Take more pain quicker' is the fastest and most effective way to achieving anything in life."
       - "The faster you can become okay with looking bad, the faster you can start getting good."
       - "The game is not about not losing. It's about not quitting when you do."
@@ -57,6 +59,7 @@ categories:
       - "You're not sad, depressed, jealous, or angry — you are what witnesses these emotions. You are what remains after these temporary feelings fade away."
       - "Pride is not the opposite of shame, but its source."
       - "You are one thought away from having the greatest experience of your life."
+      - "Surrender to change or you will suffer in a loop."
       - "Life's coming from you and not at you."
       - "Chaos was the law of nature; order was the dream of man."
 
@@ -64,6 +67,7 @@ categories:
     lines:
       - "People criticizing you often aren't criticizing you — they're revealing themselves."
       - "Resentment is like drinking poison and hoping it will kill your enemies."
+      - "The truth sounds like hate to those who hate the truth."
       - "You can have everything in life you want if you will just help other people get what they want."
       - "When you want to convey something to someone, your responsibility is not to tell them the knowledge — your responsibility is to find the right source to convey the knowledge."
       - "You cannot teach a man anything, you can only help him find it within himself."
