@@ -43,6 +43,7 @@ categories:
       - "Excellence is the capacity of bearing pain."
       - "Excellence is beautiful from a distance but brutal up close."
       - "The lust for comfort murders the passion of the soul."
+      - "You're rewarded in proportion to your courage, not your intellect."
       - "'Take more pain quicker' is the fastest and most effective way to achieving anything in life."
       - "The faster you can become okay with looking bad, the faster you can start getting good."
       - "The game is not about not losing. It's about not quitting when you do."
