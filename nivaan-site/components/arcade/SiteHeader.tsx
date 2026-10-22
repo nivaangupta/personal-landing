@@ -97,7 +97,7 @@ export default function SiteHeader({
             className="mono"
             style={{ fontSize: 8, color: "#6b70a0", letterSpacing: 0.5 }}
           >
-            Make it exist first, make it good later.
+            Some are born to enjoy the illusions, others are cursed to see the truth
           </span>
         </div>
       </Link>
