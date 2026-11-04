@@ -63,6 +63,7 @@ categories:
       - "Surrender to change or you will suffer in a loop."
       - "Life's coming from you and not at you."
       - "Chaos was the law of nature; order was the dream of man."
+      - "Some are born to enjoy the illusions, others are cursed to see the truth"
 
   - name: "People & Relationships"
     lines:
