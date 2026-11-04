@@ -99,6 +99,7 @@ categories:
       - "Intelligence is whatever machines haven't done yet."
       - "Rules are for the obedience of fools and the guidance of wise men."
       - "Learning quickly, and knowing how to learn, is one of the most important skills you can have."
+      - "It is impossible to learn the thing you think you already know."
 
   - name: "Purpose & the Long Game"
     lines:
