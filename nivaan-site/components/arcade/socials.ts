@@ -9,5 +9,4 @@ export const SOCIALS: Social[] = [
     href: "https://www.linkedin.com/in/nivaangupta/",
     hb: "#4de3d4",
   },
-  { label: "NAPX", href: "https://napx.com", hb: "#ffcc33" },
 ];

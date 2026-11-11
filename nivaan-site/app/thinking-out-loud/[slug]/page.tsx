@@ -44,7 +44,7 @@ export default async function PostPage({
 
   return (
     <PageShell maxWidth={900}>
-      <SiteHeader variant="post" />
+      <SiteHeader />
 
       <article
         style={{
