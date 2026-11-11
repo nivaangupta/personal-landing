@@ -15,8 +15,8 @@ export default function SiteHeader() {
               <dd className="mono trainer-id-name">NIVAAN GUPTA</dd>
             </div>
             <div>
-              <dt className="mono">CLASS</dt>
-              <dd>Software Engineer</dd>
+              <dt className="mono">REGION</dt>
+              <dd>New York, NY</dd>
             </div>
           </dl>
           <div className="trainer-id-stamps" aria-hidden="true">
