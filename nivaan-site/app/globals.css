@@ -333,6 +333,73 @@ a:hover {
   color: var(--teal-ink);
 }
 
+/* -------------------------------- starter lab -------------------------------- */
+.starter-lab {
+  margin-top: 22px;
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow: 0 1px 3px var(--shadow);
+}
+.professor-welcome {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+}
+.professor-portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.pixel-professor { image-rendering: pixelated; }
+.professor-name { font-size: 8px; color: var(--muted-2); }
+.professor-dialogue {
+  position: relative;
+  border: 2px solid #c7cae8;
+  box-shadow: inset 0 0 0 4px var(--panel), 4px 4px 0 var(--panel-2);
+  background: var(--panel-2);
+  padding: 26px 28px 32px;
+}
+.professor-dialogue h1 {
+  margin: 0 0 16px;
+  font-size: clamp(14px, 2vw, 20px);
+  line-height: 1.7;
+  color: var(--ink);
+}
+.professor-dialogue p {
+  min-height: 96px;
+  margin: 0;
+  font-size: 25px;
+  line-height: 1.3;
+  color: var(--body);
+}
+.dialogue-arrow { position: absolute; right: 18px; bottom: 10px; color: var(--green-ink); }
+.starter-choices { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.starter-card:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+  border-color: var(--acc);
+  transform: translateY(-2px);
+}
+@media (max-width: 1000px) {
+  .starter-choices { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .starter-lab { padding: 22px 16px; }
+  .professor-welcome { grid-template-columns: 1fr; gap: 18px; }
+  .professor-dialogue { padding: 22px 20px 30px; }
+  .professor-dialogue p { min-height: 130px; font-size: 23px; }
+  .starter-choices { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .starter-lab *, .starter-lab *::before, .starter-lab *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* -------------------------------- responsive -------------------------------- */
 @media (max-width: 780px) {
   .grid-collapse,

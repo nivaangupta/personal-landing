@@ -5,50 +5,24 @@ import Link from "next/link";
 import PageShell from "@/components/arcade/PageShell";
 import SiteHeader from "@/components/arcade/SiteHeader";
 import SiteFooter from "@/components/arcade/SiteFooter";
-import PixelAvatar from "@/components/arcade/PixelAvatar";
+import PixelProfessor from "@/components/arcade/PixelProfessor";
 import PixelSprite, { type Px } from "@/components/arcade/PixelSprite";
 import { BULBA, CHAR, SQUIRT, PIKA, PIGEOTTO } from "@/components/arcade/sprites";
 
-const CRIES = [
-  "NIVAAN used SHIP IT! It's super effective.",
-  "NIVAAN is reading. Do not disturb (much).",
-  "NIVAAN wants to talk about autonomous hotels. Again.",
-  "NIVAAN woke up at 5am. Attack rose sharply!",
-  "Wild ADOPTION PROBLEM appeared. NIVAAN grins.",
-];
-
 const LINES: Record<string, string> = {
-  none: "Five of these are yours to take. Books that rewired how I think, half-formed thoughts I published anyway, the agent skills I actually run with, lines that move me, and an open invitation to talk.",
+  none: "Welcome to Nivaan’s corner of the world! Books, ideas, agent skills, a few good quotes, or a conversation. Pick one of the five below to begin.",
   grass:
-    "BULBAREAD, the grass type. Slow to level, but every point is permanent. 16 books, honest verdicts, no polite ratings.",
-  fire: "CHARTHINK, the fire type. Attacks consensus directly. Data centers are the ENIAC of this century, and prompting is a transitional behaviour.",
+    "BULBAREAD knows the library well. Explore Nivaan’s book recommendations, with honest verdicts and a few lasting favorites.",
+  fire: "CHARTHINK has a few ideas to share. Read Nivaan’s thoughts on computing, robots, and whatever he’s figuring out next.",
   water:
-    "SQUIRTALK, the water type. High defence, higher reply rate. Calendar slot or email — both actually reach me.",
+    "SQUIRTALK is always up for a conversation. Book a time with Nivaan or send him an email. Both reach him directly.",
   electric:
-    "PIKASKILLS, the electric type. Static charge on contact. Skills I built and skills I steal, all runnable, one downloadable.",
+    "PIKASKILLS keeps the tools ready. Explore the agent skills Nivaan builds and uses, and take one along for your own work.",
   flying:
-    "PIGEQUOTE, the flying type. Carries lines that stuck and drops them when you least expect it. Sixty-plus quotes, zero sources tracked.",
+    "PIGEQUOTE collects words worth keeping. Browse the quotes that have stayed with Nivaan. You might find one to keep, too.",
 };
 
 const mono = "mono";
-
-const infoRow = (label: string, value: string, color: string) => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-between",
-      gap: 12,
-      border: "1px solid #e3e5f2",
-      padding: "11px 14px",
-      background: "#f6f7fc",
-    }}
-  >
-    <span style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 1 }}>
-      {label}
-    </span>
-    <span style={{ fontSize: 21, color, letterSpacing: 1 }}>{value}</span>
-  </div>
-);
 
 function StarterCard({
   href,
@@ -84,7 +58,9 @@ function StarterCard({
       href={href}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      className="card-link"
+      onFocus={onHover}
+      onBlur={onLeave}
+      className="card-link starter-card"
       style={{
         background: bg,
         padding: "22px 18px 20px 18px",
@@ -196,306 +172,32 @@ function StarterCard({
 }
 
 export default function Home() {
-  const [pokes, setPokes] = useState(0);
   const [hover, setHover] = useState<string>("none");
 
-  const cry = pokes === 0 ? "Poke me →" : CRIES[(pokes - 1) % CRIES.length];
   const dialog = LINES[hover] ?? LINES.none;
 
   return (
     <PageShell maxWidth={1120}>
       <SiteHeader />
 
-      {/* hero + profile card */}
-      <section
-        style={{
-          marginTop: 26,
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.55fr) minmax(0, 1fr)",
-          gap: 22,
-          alignItems: "stretch",
-        }}
-        className="grid-collapse"
-      >
-        <div
-          style={{
-            border: "1px solid #e3e5f2",
-            background: "#ffffff",
-            padding: "30px 30px 26px 30px",
-            boxShadow: "0 1px 3px rgba(20,22,58,0.06)",
-          }}
-        >
-          <h1
-            className={mono}
-            style={{
-              fontSize: 30,
-              lineHeight: 1.5,
-              margin: 0,
-              color: "#14163a",
-              overflowWrap: "break-word",
-              wordBreak: "break-word",
-            }}
-          >
-            BUILDING THE COLLABORATION INFRASTRUCTURE FOR AGENTS AND
-            ROBOTS IN HOSPITALITY
-          </h1>
-          <p
-            style={{
-              fontSize: 25,
-              lineHeight: 1.35,
-              margin: "22px 0 0 0",
-              color: "#383c66",
-            }}
-          >
-            <a
-              href="https://napx.com"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: "#8a6400", borderBottom: "1px solid #8a6400" }}
-            >
-              NapX
-            </a>{" "}
-            is an autonomous cloud hotel company reimagining the way forward
-            for property management.
-          </p>
-          <div
-            style={{
-              marginTop: 24,
-              borderLeft: "3px solid #4de3d4",
-              padding: "6px 0 6px 16px",
-            }}
-          >
-            <p
-              style={{ margin: 0, fontSize: 26, lineHeight: 1.25, color: "#20234a" }}
-            >
-              &quot;When someone tells me I can&apos;t do something,
-              that&apos;s when I know what I need to figure out
-              next.&quot;
-            </p>
-            <p
-              style={{
-                margin: "4px 0 0 0",
-                fontSize: 19,
-                color: "#6f76ad",
-                letterSpacing: 1,
-              }}
-            >
-              — HOW I PICK WHAT&apos;S NEXT
-            </p>
+      <section className="starter-lab" aria-labelledby="starter-title">
+        <div className="professor-welcome">
+          <div className="professor-portrait">
+            <PixelProfessor />
+            <span className="mono professor-name">THE PROFESSOR</span>
           </div>
-          <div
-            style={{
-              marginTop: 26,
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 12,
-            }}
-          >
-            <Link href="/lets-talk" className="btn btn-gold">
-              LET&apos;S TALK
-            </Link>
-            <a
-              href="https://napx.com"
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-teal"
-            >
-              VISIT NAPX ↗
-            </a>
+          <div className="professor-dialogue">
+            <h1 id="starter-title" className="mono">Choose your starter.</h1>
+            <p aria-live="polite" aria-atomic="true">{dialog}</p>
+            <span className="dialogue-arrow" aria-hidden="true">▼</span>
           </div>
         </div>
 
-        {/* profile / trainer card */}
         <div
-          className="cab"
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          <div className="cab-head">TRAINER CARD</div>
-          <div
-            style={{
-              padding: "22px 20px",
-              display: "flex",
-              flexDirection: "column",
-              gap: 18,
-              flex: 1,
-            }}
-          >
-            <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-              <PixelAvatar
-                size={88}
-                className="bob pokeable"
-                onClick={() => setPokes((p) => p + 1)}
-                title="poke me"
-              />
-              <div style={{ minWidth: 0 }}>
-                <div
-                  className={mono}
-                  style={{ fontSize: 11, color: "#14163a", lineHeight: 1.6 }}
-                >
-                  NIVAAN
-                </div>
-                <div
-                  style={{
-                    fontSize: 21,
-                    color: "#1f7a3f",
-                    letterSpacing: 1,
-                    marginTop: 6,
-                  }}
-                >
-                  Cofounder, NapX
-                </div>
-                <div style={{ fontSize: 21, color: "#6f76ad", letterSpacing: 1 }}>
-                  Bay Area
-                </div>
-                <div
-                  style={{
-                    marginTop: 8,
-                    border: "1px solid #ffcc33",
-                    background: "#fdf6e0",
-                    padding: "6px 8px",
-                    fontSize: 19,
-                    color: "#8a6400",
-                    lineHeight: 1.25,
-                  }}
-                >
-                  {cry}
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                marginTop: "auto",
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: 8,
-              }}
-            >
-              <a
-                href="https://x.com/nivusd"
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-              >
-                X
-              </a>
-              <a
-                href="https://github.com/nivaangupta"
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-              >
-                GITHUB
-              </a>
-              <a
-                href="https://www.linkedin.com/in/nivaangupta/"
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-                style={{ gridColumn: "span 2", ["--hb" as string]: "#4de3d4" }}
-              >
-                LINKEDIN
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* what I'm building */}
-      <section className="cab" style={{ marginTop: 22 }}>
-        <div className="cab-head" style={{ color: "#8a6400" }}>
-          WHAT I&apos;M BUILDING
-        </div>
-        <div
-          className="grid-collapse"
-          style={{
-            padding: "26px 24px",
-            display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
-            gap: 26,
-          }}
-        >
-          <div>
-            <div
-              className={mono}
-              style={{ fontSize: 18, color: "#14163a", letterSpacing: 2 }}
-            >
-              NAP×
-            </div>
-            <p
-              style={{
-                fontSize: 24,
-                lineHeight: 1.4,
-                color: "#383c66",
-                margin: "14px 0 0 0",
-              }}
-            >
-              Reimagining properties for the agentic era. One infrastructure
-              layer that lets every device, system, agent and humanoid in a
-              hotel act as one. The hard part was never the tech — it was
-              getting people to adopt it.
-            </p>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 10,
-              justifyContent: "center",
-            }}
-          >
-            {infoRow("STATUS", "STEALTH MODE", "#1f7a3f")}
-            {infoRow("ROLE", "COFOUNDER", "#8a6400")}
-            {infoRow("ORCHESTRATING", "IOT · SAAS · AGENTS", "#0d7d72")}
-            {infoRow("BIGGEST CHALLENGE", "LEGACY ADOPTION", "#b8225f")}
-          </div>
-        </div>
-      </section>
-
-      {/* choose a starter */}
-      <section
-        style={{
-          marginTop: 22,
-          border: "1px solid #e3e5f2",
-          background: "#ffffff",
-          boxShadow: "0 1px 3px rgba(20,22,58,0.06)",
-          padding: "26px 24px 28px 24px",
-        }}
-      >
-        <span
-          className={mono}
-          style={{ fontSize: 9, color: "#1f7a3f", letterSpacing: 1 }}
-        >
-          CHOOSE A STARTER
-        </span>
-
-        <div
-          style={{
-            marginTop: 18,
-            border: "1px solid #c7cae8",
-            background: "#f6f7fc",
-            padding: "18px 20px",
-          }}
-        >
-          <p
-            style={{
-              margin: 0,
-              fontSize: 25,
-              lineHeight: 1.35,
-              color: "#14163a",
-              minHeight: 68,
-            }}
-          >
-            {dialog}
-          </p>
-        </div>
-
-        <div
-          className="grid-starters"
+          className="starter-choices"
           style={{
             marginTop: 22,
             display: "grid",
-            gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
             gap: 18,
           }}
         >
@@ -605,78 +307,6 @@ export default function Home() {
             chooseColor="#4de3d4"
           />
         </div>
-      </section>
-
-      {/* focus areas */}
-      <section className="cab" style={{ marginTop: 22, padding: "22px 24px" }}>
-        <div
-          className={mono}
-          style={{
-            fontSize: 9,
-            color: "#4d5286",
-            letterSpacing: 1,
-            marginBottom: 18,
-          }}
-        >
-          FOCUS AREAS
-        </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-          {[
-            { t: "HOSPITALITY TECH", c: "#4de3d4", b: "#235a56", bg: "#0f2523" },
-            { t: "AGENTIC SYSTEMS", c: "#ffcc33", b: "#5c4610", bg: "#241f0c" },
-            { t: "ROBOTICS", c: "#ff5f9e", b: "#5c2440", bg: "#250f1b" },
-            { t: "GO-TO-MARKET", c: "#6bff8f", b: "#23562f", bg: "#0f2416" },
-            { t: "FIRST PRINCIPLES", c: "#4d5286", b: "#e3e5f2", bg: "#f6f7fc" },
-            { t: "5AM STARTS", c: "#4d5286", b: "#e3e5f2", bg: "#f6f7fc" },
-            { t: "LONG BOOK LISTS", c: "#4d5286", b: "#e3e5f2", bg: "#f6f7fc" },
-            { t: "ARGUING WITH DEFAULTS", c: "#4d5286", b: "#e3e5f2", bg: "#f6f7fc" },
-          ].map((it) => (
-            <span
-              key={it.t}
-              style={{
-                fontSize: 21,
-                letterSpacing: 1,
-                color: it.c,
-                border: `1px solid ${it.b}`,
-                background: it.bg,
-                padding: "8px 13px",
-              }}
-            >
-              {it.t}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* closing CTA */}
-      <section
-        style={{
-          marginTop: 22,
-          border: "1px solid #ffcc33",
-          background: "#fdf6e0",
-          boxShadow: "0 1px 3px rgba(122,90,9,0.12)",
-          padding: "24px 26px",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 18,
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div>
-          <div
-            className="mono"
-            style={{ fontSize: 11, color: "#8a6400", lineHeight: 1.6 }}
-          >
-            GOT SOMETHING TO BUILD?
-          </div>
-          <p style={{ fontSize: 23, color: "#7a5a1f", margin: "10px 0 0 0" }}>
-            Calendar slot or email, both actually reach me.
-          </p>
-        </div>
-        <Link href="/lets-talk" className="btn btn-gold">
-          LET&apos;S TALK ▸
-        </Link>
       </section>
 
       <SiteFooter />

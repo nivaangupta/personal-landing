@@ -19,7 +19,7 @@ const vt323 = VT323({
 export const metadata: Metadata = {
   title: "Nivaan Gupta",
   description:
-    "Nivaan Gupta — cofounder at NapX, building the infrastructure layer for autonomous hotels. Better tools exist. Adoption doesn't.",
+    "Explore Nivaan Gupta’s book recommendations, thoughts, agent skills, and favorite quotes, or stop by for a conversation.",
 };
 
 export default function RootLayout({
